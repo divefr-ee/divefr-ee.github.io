@@ -1,7 +1,177 @@
-<html>
-  <body>
-    <center>
-      <h1>Hello</h1>
-    </center>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freedive Log</title>
+    <script src="plotly.js"></script>
+    <style>
+        html {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            color: #555;
+        }
+        #dataList {
+            min-width: fit-content;
+            height: 100%;
+            margin-right: 1%;
+            cursor: pointer;
+        }
+        #rightPane {
+            width: 90%;
+        }
+        #divePlot {
+            width: 90%;
+        }
+        #mapPane {
+            width: 90%;
+        }
+        .selected {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="dataList">
+        <h3>Dives</h3>
+        <!-- The dataset elements will be populated here -->
+    </div>
+
+    <div id="rightPane">
+        <div id="divePlot"></div>
+        <div id="mapPane">
+            <center>
+                <iframe
+                    id="mapIframe"
+                    width="70%"
+                    height="300px"
+                    frameborder="0"
+                    scrolling="no"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=-122.014128%2C38.410107%2C-122.214128%2C38.610107&marker=38.510107,-122.114128">
+                </iframe>
+            </center>
+        </div>
+    </div>
+    
+    <script>
+        const title = 'Free Dive Log';
+        const xlabel = 'time';
+        const ylabel1 = 'depth';
+        const ylabel2 = 'temp';
+        const color1 = 'green';
+        const color2 = 'orange';
+        const datasets = [
+            {
+                date: '2024-10-09',
+                location_name: 'Beryessa',
+                coordinates: [ 38.510107, -122.114128 ],
+                t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60],
+                depth: ["-1.41","-2.06","-3.11","-4.15","-4.93","-5.95","-6.86","-7.65","-8.28","-9.60","-10.56","-11.83","-13.27","-14.37","-15.73","-16.33","-15.91","-15.79","-16.04","-15.88","-15.43","-14.65","-13.80","-12.59","-11.33","-10.12","-8.54","-6.88","-5.44","-3.50","-1.32"],
+                temperature: ["23.00","23.00","23.00","23.00","23.00","23.00","23.00","23.00","23.00","23.00","23.00","23.00","23.00","22.00","22.00","21.00","21.00","20.00","20.00","20.00","19.00","19.00","19.00","19.00","19.00","19.00","19.00","19.00","20.00","20.00","20.00"]
+            },
+            {
+                date: '2024-09-28',
+                location_name: 'Miwok Pool',
+                coordinates: [38.074059, -122.578576],
+                t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80],
+                depth: ["-1.43","-1.68","-2.26","-2.36","-2.74","-3.12","-3.72","-4.08","-4.25","-4.32","-4.34","-4.31","-4.50","-4.63","-4.79","-4.78","-4.79","-4.77","-4.71","-4.72","-4.72","-4.55","-4.38","-4.43","-4.51","-4.47","-4.43","-4.43","-4.51","-4.46","-4.38","-4.29","-4.31","-4.31","-3.96","-3.71","-3.85","-3.78","-3.16","-2.43","-1.05"],
+                temperature: ["28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"]
+            },
+            {
+                date: '2024-08-27',
+                location_name: 'Kirkwood Pool',
+                coordinates: [38.685691, -120.066510],
+                t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,128,130,132,134,136,138,140,142,144,146,148,150,152],
+                depth: ["-1.24","-1.28","-1.26","-1.30","-1.31","-1.28","-1.26","-1.27","-1.28","-1.27","-1.28","-1.28","-1.26","-1.28","-1.29","-1.30","-1.28","-1.28","-1.27","-1.28","-1.30","-1.29","-1.29","-1.29","-1.31","-1.31","-1.29","-1.31","-1.29","-1.29","-1.30","-1.30","-1.30","-1.30","-1.30","-1.30","-1.29","-1.29","-1.28","-1.28","-1.30","-1.30","-1.31","-1.28","-1.29","-1.30","-1.28","-1.28","-1.28","-1.28","-1.29","-1.28","-1.30","-1.30","-1.30","-1.30","-1.29","-1.29","-1.30","-1.30","-1.28","-1.26","-1.27","-1.31","-1.28","-1.29","-1.29","-1.27","-1.28","-1.27","-1.27","-1.28","-1.27","-1.27","-1.28","-1.27","-0.43"],
+                temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"]
+            }
+        ];
+
+        function updatePlot(index) {
+            Plotly.react('divePlot', [
+                {
+                    x: datasets[index].t,
+                    y: datasets[index].depth,
+                    mode: 'lines+markers',
+                    type: 'scatter',
+                    name: ylabel1,
+                    yaxis: 'y',
+                    line: { color: color1 }
+                },
+                {
+                    x: datasets[index].t,
+                    y: datasets[index].temperature,
+                    mode: 'lines+markers',
+                    type: 'scatter',
+                    name: ylabel2,
+                    yaxis: 'y2',
+                    line: { color: color2 }
+                }
+            ], {
+                title: datasets[index].date + ', ' + datasets[index].location_name,
+                showlegend: false,
+                xaxis: { title: xlabel },
+                yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
+                yaxis2: {
+                    title: ylabel2,
+                    overlaying: 'y',
+                    side: 'right',
+                    titlefont: { color: color2 },
+                    tickfont: { color: color2 },
+                    showgrid: false // Optional: Hide the grid for the right Y-axis
+                }
+            });
+
+            // Update selected class
+            const datasetElements = document.querySelectorAll('.dataset');
+            datasetElements.forEach(el => el.classList.remove('selected'));
+            datasetElements[index].classList.add('selected');
+
+            // Update the iframe URL with new coordinates and bbox
+            const [ lat, lon ] = datasets[index].coordinates;
+            const newBBox = `${lon - 0.03}%2C${lat - 0.03}%2C${lon + 0.03}%2C${lat + 0.03}`;
+            const newMarker = `${lat},${lon}`;
+            const newIframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${newBBox}&marker=${newMarker}`;
+            document.getElementById('mapIframe').src = newIframeSrc;
+        }
+
+        // Populate the dataset names dynamically
+        const dataList = document.getElementById('dataList');
+        datasets.forEach((dataset, index) => {
+            const div = document.createElement('div');
+            div.setAttribute('data-index', index);
+            div.className = 'dataset';
+            div.textContent = dataset.date + ', '+ dataset.location_name; // Set the dataset name
+            dataList.appendChild(div);
+
+            // Add click event listener for each dataset
+            div.addEventListener('click', function() {
+                updatePlot(index);
+            });
+        });
+
+        // Initial plot with the first dataset
+        updatePlot(0);
+
+        // Simulate a click on the first element when the page loads
+        window.onload = function() {
+            const firstElement = document.querySelector('.dataset');
+            if (firstElement) {
+                firstElement.click(); // Simulate click on the first dataset
+            }
+        };
+
+        // Resize plot on window resize
+        window.addEventListener('resize', function() {
+        Plotly.Plots.resize(document.getElementById('divePlot'));
+    });
+    </script>
+
+</body>
 </html>
