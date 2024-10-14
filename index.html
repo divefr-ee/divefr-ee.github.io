@@ -25,7 +25,7 @@
           background-color: #ffcc00;
           color: black;
           text-align: center;
-          padding: 8px;
+          padding: 3px;
           font-size: 14px;
           z-index: 1000;
         }
@@ -115,10 +115,17 @@
           temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"]
         }
       ];
-
+      
+      // if onMobile and in portrait mode, bug the user
       function checkOrientation() {
         const banner = document.getElementById('orientationBanner');
-        if (window.innerWidth < window.innerHeight) {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const onMobile = /android/i.test(userAgent) ||
+           /iPhone|iPad|iPod/i.test(userAgent) ||
+           /windows phone/i.test(userAgent) ||
+           /mobile/i.test(userAgent);
+
+        if (onMobile && window.innerWidth < window.innerHeight) {
           // In landscape mode, show the banner
           banner.style.display = 'block';
         } else {
