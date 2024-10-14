@@ -141,10 +141,13 @@
 
             // Update the iframe URL with new coordinates and bbox
             const [ lat, lon ] = datasets[index].coordinates;
+if (lat && lon ){
             const newBBox = `${lon - 0.03}%2C${lat - 0.03}%2C${lon + 0.03}%2C${lat + 0.03}`;
             const newMarker = `${lat},${lon}`;
             const newIframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${newBBox}&marker=${newMarker}`;
             document.getElementById('mapIframe').src = newIframeSrc;
+        }else{
+            document.getElementById('mapIframe').src = ``;
         }
 
         // Populate the dataset names dynamically
