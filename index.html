@@ -156,7 +156,7 @@
         const dataList = document.getElementById('dataList');
         const datasetElements = dataList.children;
         const fontSize = parseFloat(getComputedStyle(dataList).fontSize); // Get font size in pixels
-        const averageCharWidth = fontSize * 0.75; // Estimate average character width (adjust as needed)
+        const averageCharWidth = fontSize * 0.6; // Estimate average character width (adjust as needed)
         let maxWidth = 0;
 
         // Calculate the maximum width based on text length
@@ -169,7 +169,7 @@
         });
 
         // Set the width of #dataList to the maximum width
-        dataList.style.width = maxWidth + 'px';
+        dataList.style.minWidth = maxWidth + 'px';
       }
 
 
