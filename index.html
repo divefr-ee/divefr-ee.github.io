@@ -9,6 +9,7 @@
         html {
           height: 100%;
           margin: 0;
+          overflow: hidden;
         }
         body {
           display: flex;
@@ -31,13 +32,17 @@
         }
         #dataList {
           height: 100%;
-          margin-right: 1%;
+          padding-top: 20px;
+          margin-right: 10px;
           cursor: pointer;
           white-space: nowrap;
           border-right: 1px solid #ccc;
+          overflow-y: auto;
         }
         #rightPane {
           width: 100%;
+          overflow-y: auto;
+          overflow-x: hidden;
         }
         #divePlot {
           width: 100%;
@@ -61,7 +66,7 @@
     <div id="orientationBanner">This page works better in landscape mode.</div>
 
     <div id="dataList">
-      <h3>Dives</h3>
+      <!-- h3>Dives</h3 -->
       <!-- The dataset elements will be populated here -->
     </div>
 
@@ -125,16 +130,27 @@
            /windows phone/i.test(userAgent) ||
            /mobile/i.test(userAgent);
 
-        if (onMobile && window.innerWidth < window.innerHeight) {
-          // In landscape mode, show the banner
+        if (onMobile){
+          // on mobile the window dimensions are usually fixed, but we can ask for landscape mode
+          if (window.innerWidth < window.innerHeight) {
+            // show the banner when in landscape mode
+            banner.innerText = "This page looks better in landscape mode";
+            banner.style.display = 'block';
+          }else{
+            // hide the banner otherwise
+            banner.style.display = 'none';
+          }
+        } else if (window.innerWidth < 600) {
+          // on desktop, show the banner if below some min width
+          banner.innerText = "This page looks better on wider screens";
           banner.style.display = 'block';
-        } else {
-          // In portrait mode, hide the banner
+        }else{
+          // otherwise hide it
           banner.style.display = 'none';
         }
       }
 
-    function updatePlot(index) {
+      function updatePlot(index) {
         Plotly.react('divePlot', [
           {
             x: datasets[index].t,
@@ -190,7 +206,7 @@
         const dataList = document.getElementById('dataList');
         const datasetElements = dataList.children;
         const fontSize = parseFloat(getComputedStyle(dataList).fontSize); // Get font size in pixels
-        const averageCharWidth = fontSize * 0.6; // Estimate average character width (adjust as needed)
+        const averageCharWidth = fontSize * 0.5; // Estimate average character width (adjust as needed)
         let maxWidth = 0;
 
         // Calculate the maximum width based on text length
