@@ -17,19 +17,20 @@
           color: #555;
         }
         #dataList {
-          min-width: fit-content;
           height: 100%;
           margin-right: 1%;
           cursor: pointer;
+          white-space: nowrap;
+          border-right: 1px solid #ccc;
         }
         #rightPane {
-          width: 90%;
+          width: 100%;
         }
         #divePlot {
-          width: 90%;
+          width: 100%;
         }
         #mapPane {
-          width: 90%;
+          width: 100%;
         }
         .selected {
           color: black;
@@ -149,37 +150,61 @@
         }else{
           document.getElementById('mapIframe').src = ``;
         }
+      }
 
-        // Populate the dataset names dynamically
+      function adjustDataListWidth() {
         const dataList = document.getElementById('dataList');
-        datasets.forEach((dataset, index) => {
-          const div = document.createElement('div');
-          div.setAttribute('data-index', index);
-          div.className = 'dataset';
-          div.textContent = dataset.date + ', '+ dataset.location_name; // Set the dataset name
-          dataList.appendChild(div);
+        const datasetElements = dataList.children;
+        const fontSize = parseFloat(getComputedStyle(dataList).fontSize); // Get font size in pixels
+        const averageCharWidth = fontSize * 0.75; // Estimate average character width (adjust as needed)
+        let maxWidth = 0;
 
-          // Add click event listener for each dataset
-          div.addEventListener('click', function() {
-            updatePlot(index);
-          });
-        });
-
-        // Initial plot with the first dataset
-        updatePlot(0);
-
-        // Simulate a click on the first element when the page loads
-        window.onload = function() {
-          const firstElement = document.querySelector('.dataset');
-          if (firstElement) {
-            firstElement.click(); // Simulate click on the first dataset
+        // Calculate the maximum width based on text length
+        Array.from(datasetElements).forEach(el => {
+          const textLength = el.firstChild.textContent.length;
+          const width = textLength * averageCharWidth;
+          if (width > maxWidth) {
+            maxWidth = width;
           }
-        };
-
-        // Resize plot on window resize
-        window.addEventListener('resize', function() {
-          Plotly.Plots.resize(document.getElementById('divePlot'));
         });
+
+        // Set the width of #dataList to the maximum width
+        dataList.style.width = maxWidth + 'px';
+      }
+
+
+      // Populate the dataset names dynamically
+      const dataList = document.getElementById('dataList');
+      datasets.forEach((dataset, index) => {
+        const div = document.createElement('div');
+        div.setAttribute('data-index', index);
+        div.className = 'dataset';
+        div.textContent = dataset.date + ', '+ dataset.location_name; // Set the dataset name
+        dataList.appendChild(div);
+
+        // Add click event listener for each dataset
+        div.addEventListener('click', function() {
+          updatePlot(index);
+        });
+      });
+
+      // Adjust the width after populating the dataList
+      adjustDataListWidth();
+      // Initial plot with the first dataset
+      updatePlot(0);
+
+      // Simulate a click on the first element when the page loads
+      window.onload = function() {
+        const firstElement = document.querySelector('.dataset');
+        if (firstElement) {
+          firstElement.click(); // Simulate click on the first dataset
+        }
+      };
+
+      // Resize plot on window resize
+      window.addEventListener('resize', function() {
+        Plotly.Plots.resize(document.getElementById('divePlot'));
+      });
     </script>
     <div id="copyright" style="padding-top: 1em; margin-top: 5%;font-size: 70%; color: gray; text-align: left;">
       &copy; Ello Skelling</div>
