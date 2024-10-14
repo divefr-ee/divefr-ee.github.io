@@ -16,6 +16,19 @@
           font-family: Arial, sans-serif;
           color: #555;
         }
+        #orientationBanner {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background-color: #ffcc00;
+          color: black;
+          text-align: center;
+          padding: 8px;
+          font-size: 14px;
+          z-index: 1000;
+        }
         #dataList {
           height: 100%;
           margin-right: 1%;
@@ -44,6 +57,8 @@
     </style>
   </head>
   <body>
+    
+    <div id="orientationBanner">This page works better in landscape mode.</div>
 
     <div id="dataList">
       <h3>Dives</h3>
@@ -101,7 +116,18 @@
         }
       ];
 
-      function updatePlot(index) {
+      function checkOrientation() {
+        const banner = document.getElementById('orientationBanner');
+        if (window.innerWidth < window.innerHeight) {
+          // In landscape mode, show the banner
+          banner.style.display = 'block';
+        } else {
+          // In portrait mode, hide the banner
+          banner.style.display = 'none';
+        }
+      }
+
+    function updatePlot(index) {
         Plotly.react('divePlot', [
           {
             x: datasets[index].t,
@@ -189,8 +215,12 @@
         });
       });
 
+      // Check orientation and bother user
+      checkOrientation();
+
       // Adjust the width after populating the dataList
       adjustDataListWidth();
+
       // Initial plot with the first dataset
       updatePlot(0);
 
@@ -204,6 +234,7 @@
 
       // Resize plot on window resize
       window.addEventListener('resize', function() {
+        checkOrientation();
         Plotly.Plots.resize(document.getElementById('divePlot'));
       });
     </script>
