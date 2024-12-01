@@ -372,18 +372,34 @@
             }
             selectedFile = file;
             document.getElementById('file-' + selectedFile).classList.add('selected');
+
+            // Store the selected file in a cookie
+            document.cookie = `selectedFile=${file};path=/;max-age=31536000`;  // Store for 1 year
         }
+
+        function getCookie(name) {
+            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
 
         // Automatically load a file on page load
         window.onload = function() {
-            const defaultFolder = '2024-11-19';  // Hardcoded folder name
-            const defaultFile = '09:08:42';      // Hardcoded file name (without extension)
+            defaultFolder = '2024-11-19';  // Hardcoded folder name
+            defaultFile = '09:08:42';      // Hardcoded file name (without extension)
+
+            const selectedFileFromCookie = getCookie('selectedFile');
+
+            if (selectedFileFromCookie) {
+                // Extract folder and file from the cookie (expecting "folder/file" format)
+                [restoreFolder, restoreFile] = selectedFileFromCookie.split('/');
+            }
 
             // Expand the specific folder and load the specific file
-            const folderElement = document.getElementById('folder-' + defaultFolder);
+            const folderElement = document.getElementById('folder-' + restoreFolder);
             if (folderElement) {
                 folderElement.click();  // Expand the folder
-                const fileElement = document.getElementById('file-' + defaultFolder + '/' + defaultFile);
+                const fileElement = document.getElementById('file-' + restoreFolder + '/' + restoreFile);
                 if (fileElement) {
                     fileElement.click();  // Load the file into the iframe
                 }
