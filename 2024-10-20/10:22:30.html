@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-10-20",
         time: "10:22:30",
@@ -67,11 +69,11 @@
         lon: -122.114128,
         locname: "Beryessa Dive Studio",
         t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52],
-        depth: [-1.33,-2.12,-3.42,-4.58,-6.16,-7.65,-9.03,-9.71,-9.95,-10.27,-10.15,-10.12,-10.1,-10.28,-9.81,-9.58,-9.41,-9.46,-9.31,-9.07,-9.1,-9.13,-8.13,-6.84,-5.28,-3.31,-1.01],
-        temperature: ["22.00","22.00","22.00","22.00","22.00","22.00","22.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00"],
-        vertrates: [-0.395,-0.4715,-0.50405,-0.589835,-0.6363845,-0.65246915,-0.558728405,-0.4271098835,-0.34697691845,-0.224883842915,-0.1529186900405,-0.10404308302835,-0.0998301581198449,0.000618889316108387,0.0349332225212759,0.0499532557648931,0.0274672790354251,0.0417270953247976,0.0652089667273584,0.0411462767091509,0.0243023936964055,0.167011675587484,0.310408172911239,0.451285721037867,0.611400004726507,0.772980003308555,0.886086002315988]
+        depth: ["-1.33","-2.12","-3.42","-4.58","-6.16","-7.65","-9.03","-9.71","-9.95","-10.27","-10.15","-10.12","-10.10","-10.28","-9.81","-9.58","-9.41","-9.46","-9.31","-9.07","-9.10","-9.13","-8.13","-6.84","-5.28","-3.31","-1.01"],
+        temperature: ["22.00","22.00","22.00","22.00","22.00","22.00","22.00","21.20","21.04","21.01","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00"],
+        vertrate: ["-0.40","-0.60","-0.58","-0.75","-0.75","-0.70","-0.41","-0.18","-0.16","0.02","0.02","0.01","-0.07","0.17","0.13","0.09","-0.00","0.06","0.11","0.01","-0.01","0.40","0.60","0.74","0.94","1.11","1.14"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });

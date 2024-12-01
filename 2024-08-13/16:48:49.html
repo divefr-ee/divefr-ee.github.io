@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-08-13",
         time: "16:48:49",
@@ -67,11 +69,11 @@
         lon: -120.070333,
         locname: "Kirkwood",
         t: [0,2,4,6,8,10,12,14,16,18,20,22],
-        depth: [-1.24,-1.3,-1.31,-1.31,-1.3,-1.27,-1.21,-1.11,-1.01,-1.07,-1.07,-0.96],
+        depth: ["-1.24","-1.30","-1.31","-1.31","-1.30","-1.27","-1.21","-1.11","-1.01","-1.07","-1.07","-0.96"],
         temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"],
-        vertrates: [-0.03,-0.0225,-0.01575,-0.00952500000000001,-0.0021675,0.00748275000000001,0.020237925,0.0291665475,0.01141658325,0.00799160827499999,0.0220941257925,0.03196588805475]
+        vertrate: ["-0.03","-0.01","-0.00","0.00","0.01","0.03","0.05","0.05","-0.01","-0.00","0.04","0.05"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });

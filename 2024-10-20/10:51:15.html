@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-10-20",
         time: "10:51:15",
@@ -67,11 +69,11 @@
         lon: -122.114128,
         locname: "Beryessa Dive Studio",
         t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46],
-        depth: [-1.67,-2.57,-3.2,-4.11,-5.57,-7.28,-8.95,-11.13,-13.12,-14.85,-17.14,-18.47,-18.72,-19.22,-18.04,-16.74,-15.24,-13.53,-11.95,-10.03,-8.17,-6.52,-4.33,-1.69],
-        temperature: ["21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","20.00","20.00","20.00","19.00","19.00","19.00","18.00","18.00","18.00","19.00","19.00","19.00","19.00","19.00"],
-        vertrates: [-0.45,-0.4095,-0.42315,-0.515205,-0.6171435,-0.68250045,-0.804750315,-0.8618252205,-0.86277765435,-0.947444358045,-0.8627110506315,-0.64139773544205,-0.523978414809435,-0.189784890366604,0.0621505767433771,0.268505403720364,0.444453782604255,0.548117647822978,0.671682353476085,0.749177647433259,0.771924353203281,0.868847047242297,1.00419293306961,1.09893505314873]
+        depth: ["-1.67","-2.57","-3.20","-4.11","-5.57","-7.28","-8.95","-11.13","-13.12","-14.85","-17.14","-18.47","-18.72","-19.22","-18.04","-16.74","-15.24","-13.53","-11.95","-10.03","-8.17","-6.52","-4.33","-1.69"],
+        temperature: ["21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","20.20","20.04","20.01","19.20","19.04","19.01","18.20","18.04","18.01","18.80","18.96","18.99","19.00","19.00"],
+        vertrate: ["-0.45","-0.34","-0.43","-0.67","-0.82","-0.83","-1.04","-1.00","-0.89","-1.09","-0.75","-0.25","-0.25","0.42","0.60","0.72","0.83","0.80","0.93","0.93","0.85","1.05","1.27","1.31"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });

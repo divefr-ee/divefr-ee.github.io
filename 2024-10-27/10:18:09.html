@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-10-27",
         time: "10:18:09",
@@ -67,11 +69,11 @@
         lon: -122.114128,
         locname: "Beryessa Dive Studio",
         t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50],
-        depth: [-1.22,-2.1,-3.02,-3.78,-4.43,-5.19,-6.24,-7.64,-8.89,-9.8,-10.04,-9.68,-9.45,-9.74,-9.23,-8.85,-8.08,-7.87,-7.93,-7.07,-6.11,-5.47,-4.8,-4.03,-2.82,-1.25],
+        depth: ["-1.22","-2.10","-3.02","-3.78","-4.43","-5.19","-6.24","-7.64","-8.89","-9.80","-10.04","-9.68","-9.45","-9.74","-9.23","-8.85","-8.08","-7.87","-7.93","-7.07","-6.11","-5.47","-4.80","-4.03","-2.82","-1.25"],
         temperature: ["20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00"],
-        vertrates: [-0.44,-0.446,-0.4262,-0.39584,-0.391088,-0.4312616,-0.51188312,-0.545818184,-0.5185727288,-0.39900091016,-0.225300637112,-0.1232104459784,-0.12974731218488,-0.014323118529416,0.0469738170294089,0.148381671920586,0.13536717034441,0.0857570192410873,0.189029913468761,0.276320939428133,0.289424657599693,0.303097260319785,0.327668082223849,0.410867657556695,0.523107360289686,0.60167515220278]
+        vertrate: ["-0.44","-0.46","-0.40","-0.34","-0.37","-0.49","-0.66","-0.63","-0.49","-0.19","0.11","0.11","-0.09","0.19","0.19","0.35","0.15","0.01","0.35","0.45","0.35","0.34","0.38","0.56","0.74","0.78"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });

@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-08-16",
         time: "12:29:47",
@@ -67,11 +69,11 @@
         lon: -120.070333,
         locname: "Kirkwood",
         t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44],
-        depth: [-1.32,-1.36,-1.36,-1.39,-1.2,-1.16,-1.06,-1.19,-1.25,-1.35,-1.36,-1.34,-1.34,-1.33,-1.35,-1.34,-1.36,-1.35,-1.33,-1.32,-1.3,-1.28,-1.12],
+        depth: ["-1.32","-1.36","-1.36","-1.39","-1.20","-1.16","-1.06","-1.19","-1.25","-1.35","-1.36","-1.34","-1.34","-1.33","-1.35","-1.34","-1.36","-1.35","-1.33","-1.32","-1.30","-1.28","-1.12"],
         temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"],
-        vertrates: [-0.0199999999999999,-0.0139999999999999,-0.0143,0.01849,0.018943,0.0282601,0.000282070000000013,-0.008802551,-0.0211617857,-0.01631324999,-0.00841927499300001,-0.00589349249510001,-0.00262544474657,-0.00483781132259901,-0.0018864679258193,-0.00432052754807348,-0.00152436928365147,0.00193294150144397,0.00285305905101078,0.00499714133570755,0.00649799893499529,0.0285485992544967,0.0439840194781477]
+        vertrate: ["-0.02","-0.00","-0.01","0.07","0.03","0.05","-0.04","-0.03","-0.05","-0.01","0.01","0.00","0.00","-0.01","0.00","-0.01","0.00","0.01","0.01","0.01","0.01","0.07","0.08"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });

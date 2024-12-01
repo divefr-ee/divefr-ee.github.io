@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-09-28",
         time: "16:43:09",
@@ -67,11 +69,11 @@
         lon: -122.578614,
         locname: "Miwok",
         t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38],
-        depth: [-1.42,-1.29,-1.67,-2.18,-3.01,-3.39,-3.97,-4.22,-4.51,-4.17,-3.6,-3.49,-3.59,-3.33,-3.25,-3.36,-3.33,-3.17,-2.66,-1.67],
+        depth: ["-1.42","-1.29","-1.67","-2.18","-3.01","-3.39","-3.97","-4.22","-4.51","-4.17","-3.60","-3.49","-3.59","-3.33","-3.25","-3.36","-3.33","-3.17","-2.66","-1.67"],
         temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"],
-        vertrates: [0.0649999999999999,-0.0115,-0.08455,-0.183685,-0.1855795,-0.21690565,-0.189333955,-0.1760337685,-0.07222363795,0.034943453435,0.0409604174045,0.01367229218315,0.048570604528205,0.0459994231697435,0.0156995962188205,0.0154897173531743,0.034842802147222,0.100889961503055,0.219122973052139,0.301886081136497]
+        vertrate: ["0.06","-0.14","-0.23","-0.38","-0.23","-0.28","-0.16","-0.15","0.11","0.25","0.09","-0.02","0.10","0.05","-0.03","0.01","0.07","0.22","0.44","0.48"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });

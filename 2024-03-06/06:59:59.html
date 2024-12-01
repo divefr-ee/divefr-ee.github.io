@@ -58,8 +58,10 @@
       const xlabel = 'time (s)';
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
+      const ylabel3 = 'temp (C)';
       const color1 = 'royalblue';
       const color2 = 'grey';
+      const color3 = 'gold';
       const dataset = {
         date: "2024-03-06",
         time: "06:59:59",
@@ -67,11 +69,11 @@
         lon: -111.828257,
         locname: "Mesa Delta Pool",
         t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30],
-        depth: [-1.27,-1.7,-1.79,-1.81,-1.8,-1.79,-1.76,-1.74,-1.68,-1.64,-1.63,-1.59,-1.52,-1.21,-1.11,-0.31],
-        temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00"],
-        vertrates: [-0.215,-0.164,-0.1178,-0.08096,-0.055172,-0.0341204,-0.02088428,-0.00561899600000002,0.00206670279999999,0.00294669196000003,0.00806268437200003,0.0161438790604,0.05780071534228,0.055460500739596,0.158822350517717,0.231175645362402]
+        depth: ["-1.27","-1.70","-1.79","-1.81","-1.80","-1.79","-1.76","-1.74","-1.68","-1.64","-1.63","-1.59","-1.52","-1.21","-1.11","-0.31"],
+        temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","28.20","28.04","28.01","28.00","28.00","28.00","28.00","28.00","28.00","28.00"],
+        vertrate: ["-0.22","-0.08","-0.02","-0.00","0.00","0.01","0.01","0.03","0.02","0.01","0.02","0.03","0.13","0.07","0.33","0.39"]
       };
-      
+
       function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);  // Get full minutes
         const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,7 +96,7 @@
       var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
       var tickText = tickVals;
 
-      var colors = dataset.vertrates.map(rate => {
+      var colors = dataset.vertrate.map(rate => {
         if (rate < 0) {
           return 'dark'+color2;
         } else return 'light'+color2;
@@ -109,17 +111,27 @@
           name: ylabel1,
           yaxis: 'y',
           line: { color: color1 },
-          zorder: 2
+          zorder: 10
         },
         {
           x: dataset.t,
-          y: dataset.vertrates,
+          y: dataset.vertrate,
           mode: 'lines',
           type: 'bar',
           name: ylabel2,
           yaxis: 'y2',
           marker: { color: colors },
-          zorder: 1
+          zorder: 5
+        },
+        {
+          x: dataset.t,
+          y: dataset.temperature,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel3,
+          yaxis: 'y3',
+          marker: { color: color3 },
+          zorder: 6
         }
       ], {
         title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
@@ -136,6 +148,11 @@
           side: 'right',
           titlefont: { color: color2 },
           tickfont: { color: color2 },
+          showgrid: false 
+        },
+        yaxis3: {
+          showticklabels: false,
+          overlaying: 'y',
           showgrid: false 
         }
       });
