@@ -72,6 +72,29 @@
         vertrates: [-0.445,-0.358,-0.3721,-0.38197,-0.427879,-0.4615153,-0.46706071,-0.509942497,-0.5474597479,-0.46422182353,-0.353455276471,-0.2279186935297,-0.15504308547079,-0.0890301598295529,-0.0608211118806871,-0.0545747783164809,-0.0622023448215367,-0.0690416413750757,-0.021329148962553,0.0150695957262131,0.0375487170083491,0.0592841019058445,0.101498871334091,0.0515492099338638,0.0630844469537046,0.123659112867593,0.182561379007315,0.222292965305121,0.275605075713584,0.350423552999509,0.312796487099656,0.232457540969759,0.128220278678832,0.062754195075182,0.0814279365526274,0.0674995555868392,0.0652496889107875,0.221174782237551,0.364822347566286,0.5568756432964,0.69131295030748]
       };
       function updatePlot() {
+
+        function formatTime(seconds) {
+          const minutes = Math.floor(seconds / 60);  // Get full minutes
+          const sec = seconds % 60;  // Get the fractional part of the seconds
+
+          // Check if the fractional part is zero
+          if (sec % 1 === 0) {
+            return `${minutes.toString().padStart(2, '0')}:${Math.floor(sec).toString().padStart(2, '0')}`; // No decimal part if it's zero
+          } else {
+            return `${minutes.toString().padStart(2, '0')}:${sec.toFixed(2).padStart(5, '0')}`; // With fractional seconds
+          }
+        }
+
+        // Calculate the time difference (dt) between the first two timestamps
+        var dt = dataset.t[1] - dataset.t[0];
+        
+        dataset.t = dataset.t.map(formatTime);
+
+        // Calculate the number of samples needed to cover 5 seconds
+        var tickInterval = Math.round(5 / dt);
+        var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
+        var tickText = tickVals;
+
         var colors = dataset.vertrates.map(rate => {
           if (rate < 0) {
             return 'darkgrey';
@@ -97,13 +120,16 @@
             name: ylabel2,
             yaxis: 'y2',
             marker: { color: colors },
-            line: { color: color2 },
             zorder: 1
           }
         ], {
           title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
           showlegend: false,
-          xaxis: { title: xlabel },
+          xaxis: { 
+            title: xlabel,
+            tickvals: tickVals,
+            ticktext: tickText
+          },
           yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
           yaxis2: {
             title: ylabel2,
@@ -131,10 +157,10 @@
       // Initial plot with the first dataset
       updatePlot();
 
-      // Resize plot on window resize
       window.addEventListener('resize', function() {
         Plotly.Plots.resize(document.getElementById('divePlot'));
       });
+
     </script>
   </body>
 </html>

@@ -72,6 +72,29 @@
         vertrates: [0.005,0.0005,-0.00265,0.001145,-0.0051985,-0.00663895000000001,0.001352735,0.0054469145,-0.000687159850000001,-0.001981011895,-0.0028867083265,-0.00202069582855,-0.004414487079985,0.0014098590440105,-0.00051309866919265,0.00414083093156515,0.00439858165209561,-0.00142099284353308,0.00200530500952685,-0.00159628649333121,-0.00111740054533185,0.000717819618267708,0.000502473732787396,-0.00264826838704883,0.00114621212906582,-0.000697651509653924,-0.00198835605675775,-0.00139184923973042,0.00202570553218871,0.00141799387253209,0.00249259571077247,0.00324481699754073,0.00227137189827851,8.99603287949553e-05,6.29722301564687e-05,4.40805611095281e-05,0.00153085639277667,0.00257159947494367,0.000300119632460568,-0.0012899162572776,-0.000902941380094322,-0.000632058966066026,-0.000442441276246218,0.00269029110662765,-0.00111679622536065,-0.000781757357752453,-0.00204723015042672,0.0015669388947013,-0.00190314277370909,-0.00133219994159636,0.000567460040882546,0.00189722202861778,-0.000171944579967553,0.00287963879402272,0.000515747155815899,-0.00113897699092887,-0.00079728389365021,0.00244190127444486,0.000209330892111397,0.00164653162447798,-0.00184742786286542,0.00470680049599421,0.00179476034719595,0.00275633224303716,0.000429432570126014,0.148800602799088,0.252660421959362]
       };
       function updatePlot() {
+
+        function formatTime(seconds) {
+          const minutes = Math.floor(seconds / 60);  // Get full minutes
+          const sec = seconds % 60;  // Get the fractional part of the seconds
+
+          // Check if the fractional part is zero
+          if (sec % 1 === 0) {
+            return `${minutes.toString().padStart(2, '0')}:${Math.floor(sec).toString().padStart(2, '0')}`; // No decimal part if it's zero
+          } else {
+            return `${minutes.toString().padStart(2, '0')}:${sec.toFixed(2).padStart(5, '0')}`; // With fractional seconds
+          }
+        }
+
+        // Calculate the time difference (dt) between the first two timestamps
+        var dt = dataset.t[1] - dataset.t[0];
+        
+        dataset.t = dataset.t.map(formatTime);
+
+        // Calculate the number of samples needed to cover 5 seconds
+        var tickInterval = Math.round(5 / dt);
+        var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
+        var tickText = tickVals;
+
         var colors = dataset.vertrates.map(rate => {
           if (rate < 0) {
             return 'darkgrey';
@@ -97,13 +120,16 @@
             name: ylabel2,
             yaxis: 'y2',
             marker: { color: colors },
-            line: { color: color2 },
             zorder: 1
           }
         ], {
           title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
           showlegend: false,
-          xaxis: { title: xlabel },
+          xaxis: { 
+            title: xlabel,
+            tickvals: tickVals,
+            ticktext: tickText
+          },
           yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
           yaxis2: {
             title: ylabel2,
@@ -131,10 +157,10 @@
       // Initial plot with the first dataset
       updatePlot();
 
-      // Resize plot on window resize
       window.addEventListener('resize', function() {
         Plotly.Plots.resize(document.getElementById('divePlot'));
       });
+
     </script>
   </body>
 </html>

@@ -11,6 +11,7 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Dive Free</title>
+
     <style>
         body {
           display: flex;
@@ -35,9 +36,11 @@
             display: inline-block;
             height: 100vh;
             border-right: 2px solid #ccc;
-            padding: 10px;
+            padding-right: 20px;
             box-sizing: border-box;
             overflow-y: auto;
+            overflow-x: hidden;
+            white-space: nowrap;
         }
         #right-pane {
             height: 100vh;
@@ -406,6 +409,12 @@
             }
             selectedFolder = folder;
             document.getElementById('folder-' + folder).classList.add('selected');
+
+             // Automatically click the first file under the folder, if available
+            const firstFile = folderElement.querySelector('li');
+            if (firstFile) {
+                firstFile.click();  // Trigger a click on the first file to load it
+            }
         }
 
         function loadFile(file) {
@@ -432,7 +441,7 @@
         checkOrientation();
 
         // Automatically load a file on page load
-        window.onload = function() {
+        window.onload = function() {            
             restoreFolder = '2024-11-03';
             restoreFile = '11:21:01';
 
