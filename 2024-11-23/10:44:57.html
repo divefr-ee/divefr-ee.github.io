@@ -48,7 +48,7 @@
             loading="lazy"
             frameborder="0"
             scrolling="no"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1%2C-0.1%2C0.1%2C0.1&marker=0,0">
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-156.4743%2C20.65886%2C-156.4143%2C20.71886&marker=20.68886,-156.4443">
         </iframe>
       </center>
     </div>
@@ -71,91 +71,74 @@
         temperature: ["26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00","26.00"],
         vertrates: [-0.64,-0.424,0.0392,0.42344,0.236408,-0.4465144,-0.72056008,-0.540392056,-0.3782744392,-0.31279210744,-0.230954475208,-0.1856681326456,-0.18996769285192,-0.108977384996344,0.127715830502559,0.473401081351791,0.463380756946254,0.264366529862378,-0.0189434290963355,-0.325260400367435,-0.335682280257204,0.269022403819957,0.72831568267397,0.509820977871779,-0.0151253154897549,-0.682587720842828,-0.63381140458998,-0.323667983212986,-0.0225675882490901,0.128202688225637,0.0777418817579458,-0.0295806827694378,-0.128706477938607,-0.150094534557025,-0.0450661741899174,0.364453678067058,0.303117574646941,0.164182302252858,0.0909276115770008,0.0756493281039008,0.0649545296727303,-0.00253182922908882,-0.0497722804603622,-0.130840596322253,0.0404115825744228,0.0282881078020959,-0.0161983245385331,-0.071338827176973,-0.0979371790238811,-0.0325560253167168,-0.0587892177217018,-0.0891524524051913,-0.0504067166836339,-0.311284701678543,-0.49389929117498,-0.441729503822486,-0.201210652675741,0.291152543126981,0.143806780188887,0.256664746132221,0.287665322292555,0.153365725604788,0.419356007923352,0.437549205546346,0.282284443882442,0.257599110717709,0.636319377502397,0.733423564251678,0.297396494976174,0.220177546483322,0.478124282538325,0.622686997776828,0.699880898443779,0.561916628910646,0.513341640237452,0.131339148166216,0.271937403716352,-0.205643817398554,-0.0359506721789877,0.214834529474709,0.258384170632296,-0.0711310805573928,0.118208243609825,-0.349254229473123,-0.460477960631186,-0.21433457244183,0.065965799290719,0.214176059503503,0.317923241652452]
       };
-      function updatePlot() {
+      
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);  // Get full minutes
+        const sec = seconds % 60;  // Get the fractional part of the seconds
 
-        function formatTime(seconds) {
-          const minutes = Math.floor(seconds / 60);  // Get full minutes
-          const sec = seconds % 60;  // Get the fractional part of the seconds
-
-          // Check if the fractional part is zero
-          if (sec % 1 === 0) {
-            return `${minutes.toString().padStart(2, '0')}:${Math.floor(sec).toString().padStart(2, '0')}`; // No decimal part if it's zero
-          } else {
-            return `${minutes.toString().padStart(2, '0')}:${sec.toFixed(2).padStart(5, '0')}`; // With fractional seconds
-          }
-        }
-
-        // Calculate the time difference (dt) between the first two timestamps
-        var dt = dataset.t[1] - dataset.t[0];
-        
-        dataset.t = dataset.t.map(formatTime);
-
-        // Calculate the number of samples needed to cover 5 seconds
-        var tickInterval = Math.round(5 / dt);
-        var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
-        var tickText = tickVals;
-
-        var colors = dataset.vertrates.map(rate => {
-          if (rate < 0) {
-            return 'dark'+color2;
-          } else return 'light'+color2;
-        });
-
-        Plotly.react('divePlot', [
-          {
-            x: dataset.t,
-            y: dataset.depth,
-            mode: 'lines',
-            type: 'scatter',
-            name: ylabel1,
-            yaxis: 'y',
-            line: { color: color1 },
-            zorder: 2
-          },
-          {
-            x: dataset.t,
-            y: dataset.vertrates,
-            mode: 'lines',
-            type: 'bar',
-            name: ylabel2,
-            yaxis: 'y2',
-            marker: { color: colors },
-            zorder: 1
-          }
-        ], {
-          title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
-          showlegend: false,
-          xaxis: { 
-            title: xlabel,
-            tickvals: tickVals,
-            ticktext: tickText
-          },
-          yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
-          yaxis2: {
-            title: ylabel2,
-            overlaying: 'y',
-            side: 'right',
-            titlefont: { color: color2 },
-            tickfont: { color: color2 },
-            showgrid: false 
-          }
-        });
-
-        // Update the iframe URL with new coordinates and bbox
-        const lat = dataset.lat;
-        const lon = dataset.lon;
-        if (lat && lon ){
-          const newBBox = `${lon - 0.03}%2C${lat - 0.03}%2C${lon + 0.03}%2C${lat + 0.03}`;
-          const newMarker = `${lat},${lon}`;
-          const newIframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${newBBox}&marker=${newMarker}`;
-          document.getElementById('mapIframe').src = newIframeSrc;
-        }else{
-          document.getElementById('mapIframe').src = ``;
+        // Check if the fractional part is zero
+        if (sec % 1 === 0) {
+          return `${minutes.toString().padStart(2, '0')}:${Math.floor(sec).toString().padStart(2, '0')}`; // No decimal part if it's zero
+        } else {
+          return `${minutes.toString().padStart(2, '0')}:${sec.toFixed(2).padStart(5, '0')}`; // With fractional seconds
         }
       }
 
-      // Initial plot with the first dataset
-      updatePlot();
+      // Calculate the time difference (dt) between the first two timestamps
+      var dt = dataset.t[1] - dataset.t[0];
+      
+      dataset.t = dataset.t.map(formatTime);
+
+      // Calculate the number of samples needed to cover 5 seconds
+      var tickInterval = Math.round(5 / dt);
+      var tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
+      var tickText = tickVals;
+
+      var colors = dataset.vertrates.map(rate => {
+        if (rate < 0) {
+          return 'dark'+color2;
+        } else return 'light'+color2;
+      });
+
+      Plotly.react('divePlot', [
+        {
+          x: dataset.t,
+          y: dataset.depth,
+          mode: 'lines',
+          type: 'scatter',
+          name: ylabel1,
+          yaxis: 'y',
+          line: { color: color1 },
+          zorder: 2
+        },
+        {
+          x: dataset.t,
+          y: dataset.vertrates,
+          mode: 'lines',
+          type: 'bar',
+          name: ylabel2,
+          yaxis: 'y2',
+          marker: { color: colors },
+          zorder: 1
+        }
+      ], {
+        title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
+        showlegend: false,
+        xaxis: { 
+          title: xlabel,
+          tickvals: tickVals,
+          ticktext: tickText
+        },
+        yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
+        yaxis2: {
+          title: ylabel2,
+          overlaying: 'y',
+          side: 'right',
+          titlefont: { color: color2 },
+          tickfont: { color: color2 },
+          showgrid: false 
+        }
+      });
 
       window.addEventListener('resize', function() {
         Plotly.Plots.resize(document.getElementById('divePlot'));
