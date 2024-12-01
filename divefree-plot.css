@@ -1,0 +1,18 @@
+html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  color: #555;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#divePlot {
+  width: 100%;
+}
+#mapPane {
+  width: 100%;
+}

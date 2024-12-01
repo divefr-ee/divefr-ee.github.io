@@ -9,63 +9,9 @@
     <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
     <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <script src="/divefree-main.min.js"></script>
+    <link rel="stylesheet" href="/divefree-main.css">    
     <title>Dive Free</title>
-
-    <style>
-        body {
-          display: flex;
-          height: 100vh; /* Ensure full height of the viewport */
-          margin: 0;
-          font-family: Arial, sans-serif;
-        }
-        #orientationBanner {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background-color: #ffcc00;
-          color: black;
-          text-align: center;
-          padding: 3px;
-          font-size: 14px;
-          z-index: 1000;
-        }
-        #left-pane {
-            display: inline-block;
-            height: 100vh;
-            border-right: 2px solid #ccc;
-            padding-right: 20px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            overflow-x: hidden;
-            white-space: nowrap;
-        }
-        #right-pane {
-            height: 100vh;
-            flex-grow: 1;
-            padding: 10px;
-            box-sizing: border-box;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 20px;
-        }
-        li {
-            cursor: pointer;
-        }
-        li.selected {
-            font-weight: bold;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
 </head>
 <body>
     <div id="orientationBanner">This page works better in landscape mode.</div>
@@ -73,400 +19,289 @@
         <ul id="folder-list">
 <li id="folder-2024-11-24" onclick="toggleFolder('2024-11-24')" class="folder-item">2024-11-24</li>
 <ul id="2024-11-24" style="display:none;">
-<li id="file-2024-11-24/10:34:56" onclick="loadFile('2024-11-24/10:34:56')" class="file-item">10:34:56</li>
-<li id="file-2024-11-24/10:32:49" onclick="loadFile('2024-11-24/10:32:49')" class="file-item">10:32:49</li>
-<li id="file-2024-11-24/10:29:17" onclick="loadFile('2024-11-24/10:29:17')" class="file-item">10:29:17</li>
-<li id="file-2024-11-24/10:27:44" onclick="loadFile('2024-11-24/10:27:44')" class="file-item">10:27:44</li>
-<li id="file-2024-11-24/10:26:20" onclick="loadFile('2024-11-24/10:26:20')" class="file-item">10:26:20</li>
-<li id="file-2024-11-24/10:24:43" onclick="loadFile('2024-11-24/10:24:43')" class="file-item">10:24:43</li>
-<li id="file-2024-11-24/10:22:14" onclick="loadFile('2024-11-24/10:22:14')" class="file-item">10:22:14</li>
-<li id="file-2024-11-24/10:13:28" onclick="loadFile('2024-11-24/10:13:28')" class="file-item">10:13:28</li>
-<li id="file-2024-11-24/10:06:43" onclick="loadFile('2024-11-24/10:06:43')" class="file-item">10:06:43</li>
-<li id="file-2024-11-24/10:04:50" onclick="loadFile('2024-11-24/10:04:50')" class="file-item">10:04:50</li>
-<li id="file-2024-11-24/10:00:16" onclick="loadFile('2024-11-24/10:00:16')" class="file-item">10:00:16</li>
+<li id="file-2024-11-24/10:34:56 - 10s - 2m" onclick="loadFile('2024-11-24/10:34:56 - 10s - 2m')" class="file-item">10:34:56 - 10s - 2m</li>
+<li id="file-2024-11-24/10:32:49 - 27s - 3m" onclick="loadFile('2024-11-24/10:32:49 - 27s - 3m')" class="file-item">10:32:49 - 27s - 3m</li>
+<li id="file-2024-11-24/10:29:17 - 23s - 3m" onclick="loadFile('2024-11-24/10:29:17 - 23s - 3m')" class="file-item">10:29:17 - 23s - 3m</li>
+<li id="file-2024-11-24/10:27:44 - 38s - 3m" onclick="loadFile('2024-11-24/10:27:44 - 38s - 3m')" class="file-item">10:27:44 - 38s - 3m</li>
+<li id="file-2024-11-24/10:26:20 - 21s - 2m" onclick="loadFile('2024-11-24/10:26:20 - 21s - 2m')" class="file-item">10:26:20 - 21s - 2m</li>
+<li id="file-2024-11-24/10:24:43 - 12s - 2m" onclick="loadFile('2024-11-24/10:24:43 - 12s - 2m')" class="file-item">10:24:43 - 12s - 2m</li>
+<li id="file-2024-11-24/10:22:14 - 41s - 3m" onclick="loadFile('2024-11-24/10:22:14 - 41s - 3m')" class="file-item">10:22:14 - 41s - 3m</li>
+<li id="file-2024-11-24/10:13:28 - 38s - 4m" onclick="loadFile('2024-11-24/10:13:28 - 38s - 4m')" class="file-item">10:13:28 - 38s - 4m</li>
+<li id="file-2024-11-24/10:06:43 - 23s - 3m" onclick="loadFile('2024-11-24/10:06:43 - 23s - 3m')" class="file-item">10:06:43 - 23s - 3m</li>
+<li id="file-2024-11-24/10:04:50 - 44s - 4m" onclick="loadFile('2024-11-24/10:04:50 - 44s - 4m')" class="file-item">10:04:50 - 44s - 4m</li>
+<li id="file-2024-11-24/10:00:16 - 19s - 2m" onclick="loadFile('2024-11-24/10:00:16 - 19s - 2m')" class="file-item">10:00:16 - 19s - 2m</li>
 </ul>
 <li id="folder-2024-11-23" onclick="toggleFolder('2024-11-23')" class="folder-item">2024-11-23</li>
 <ul id="2024-11-23" style="display:none;">
-<li id="file-2024-11-23/11:43:20" onclick="loadFile('2024-11-23/11:43:20')" class="file-item">11:43:20</li>
-<li id="file-2024-11-23/11:41:07" onclick="loadFile('2024-11-23/11:41:07')" class="file-item">11:41:07</li>
-<li id="file-2024-11-23/11:23:16" onclick="loadFile('2024-11-23/11:23:16')" class="file-item">11:23:16</li>
-<li id="file-2024-11-23/11:16:15" onclick="loadFile('2024-11-23/11:16:15')" class="file-item">11:16:15</li>
-<li id="file-2024-11-23/11:13:00" onclick="loadFile('2024-11-23/11:13:00')" class="file-item">11:13:00</li>
-<li id="file-2024-11-23/11:11:51" onclick="loadFile('2024-11-23/11:11:51')" class="file-item">11:11:51</li>
-<li id="file-2024-11-23/11:09:54" onclick="loadFile('2024-11-23/11:09:54')" class="file-item">11:09:54</li>
-<li id="file-2024-11-23/11:07:14" onclick="loadFile('2024-11-23/11:07:14')" class="file-item">11:07:14</li>
-<li id="file-2024-11-23/11:04:55" onclick="loadFile('2024-11-23/11:04:55')" class="file-item">11:04:55</li>
-<li id="file-2024-11-23/11:02:44" onclick="loadFile('2024-11-23/11:02:44')" class="file-item">11:02:44</li>
-<li id="file-2024-11-23/11:00:27" onclick="loadFile('2024-11-23/11:00:27')" class="file-item">11:00:27</li>
-<li id="file-2024-11-23/10:57:38" onclick="loadFile('2024-11-23/10:57:38')" class="file-item">10:57:38</li>
-<li id="file-2024-11-23/10:52:28" onclick="loadFile('2024-11-23/10:52:28')" class="file-item">10:52:28</li>
-<li id="file-2024-11-23/10:48:06" onclick="loadFile('2024-11-23/10:48:06')" class="file-item">10:48:06</li>
-<li id="file-2024-11-23/10:46:50" onclick="loadFile('2024-11-23/10:46:50')" class="file-item">10:46:50</li>
-<li id="file-2024-11-23/10:44:57" onclick="loadFile('2024-11-23/10:44:57')" class="file-item">10:44:57</li>
-<li id="file-2024-11-23/10:42:57" onclick="loadFile('2024-11-23/10:42:57')" class="file-item">10:42:57</li>
-<li id="file-2024-11-23/10:41:55" onclick="loadFile('2024-11-23/10:41:55')" class="file-item">10:41:55</li>
-<li id="file-2024-11-23/10:40:54" onclick="loadFile('2024-11-23/10:40:54')" class="file-item">10:40:54</li>
-<li id="file-2024-11-23/10:39:32" onclick="loadFile('2024-11-23/10:39:32')" class="file-item">10:39:32</li>
-<li id="file-2024-11-23/10:32:17" onclick="loadFile('2024-11-23/10:32:17')" class="file-item">10:32:17</li>
-<li id="file-2024-11-23/10:28:21" onclick="loadFile('2024-11-23/10:28:21')" class="file-item">10:28:21</li>
+<li id="file-2024-11-23/11:43:20 - 32s - 2m" onclick="loadFile('2024-11-23/11:43:20 - 32s - 2m')" class="file-item">11:43:20 - 32s - 2m</li>
+<li id="file-2024-11-23/11:41:07 - 35s - 3m" onclick="loadFile('2024-11-23/11:41:07 - 35s - 3m')" class="file-item">11:41:07 - 35s - 3m</li>
+<li id="file-2024-11-23/11:23:16 - 34s - 4m" onclick="loadFile('2024-11-23/11:23:16 - 34s - 4m')" class="file-item">11:23:16 - 34s - 4m</li>
+<li id="file-2024-11-23/11:16:15 - 17s - 1m" onclick="loadFile('2024-11-23/11:16:15 - 17s - 1m')" class="file-item">11:16:15 - 17s - 1m</li>
+<li id="file-2024-11-23/11:13:00 - 35s - 3m" onclick="loadFile('2024-11-23/11:13:00 - 35s - 3m')" class="file-item">11:13:00 - 35s - 3m</li>
+<li id="file-2024-11-23/11:11:51 - 34s - 3m" onclick="loadFile('2024-11-23/11:11:51 - 34s - 3m')" class="file-item">11:11:51 - 34s - 3m</li>
+<li id="file-2024-11-23/11:09:54 - 42s - 3m" onclick="loadFile('2024-11-23/11:09:54 - 42s - 3m')" class="file-item">11:09:54 - 42s - 3m</li>
+<li id="file-2024-11-23/11:07:14 - 63s - 2m" onclick="loadFile('2024-11-23/11:07:14 - 63s - 2m')" class="file-item">11:07:14 - 63s - 2m</li>
+<li id="file-2024-11-23/11:04:55 - 13s - 2m" onclick="loadFile('2024-11-23/11:04:55 - 13s - 2m')" class="file-item">11:04:55 - 13s - 2m</li>
+<li id="file-2024-11-23/11:02:44 - 23s - 4m" onclick="loadFile('2024-11-23/11:02:44 - 23s - 4m')" class="file-item">11:02:44 - 23s - 4m</li>
+<li id="file-2024-11-23/11:00:27 - 25s - 2m" onclick="loadFile('2024-11-23/11:00:27 - 25s - 2m')" class="file-item">11:00:27 - 25s - 2m</li>
+<li id="file-2024-11-23/10:57:38 - 42s - 3m" onclick="loadFile('2024-11-23/10:57:38 - 42s - 3m')" class="file-item">10:57:38 - 42s - 3m</li>
+<li id="file-2024-11-23/10:52:28 - 27s - 3m" onclick="loadFile('2024-11-23/10:52:28 - 27s - 3m')" class="file-item">10:52:28 - 27s - 3m</li>
+<li id="file-2024-11-23/10:48:06 - 28s - 2m" onclick="loadFile('2024-11-23/10:48:06 - 28s - 2m')" class="file-item">10:48:06 - 28s - 2m</li>
+<li id="file-2024-11-23/10:46:50 - 9s - 1m" onclick="loadFile('2024-11-23/10:46:50 - 9s - 1m')" class="file-item">10:46:50 - 9s - 1m</li>
+<li id="file-2024-11-23/10:44:57 - 19s - 2m" onclick="loadFile('2024-11-23/10:44:57 - 19s - 2m')" class="file-item">10:44:57 - 19s - 2m</li>
+<li id="file-2024-11-23/10:42:57 - 27s - 1m" onclick="loadFile('2024-11-23/10:42:57 - 27s - 1m')" class="file-item">10:42:57 - 27s - 1m</li>
+<li id="file-2024-11-23/10:41:55 - 13s - 1m" onclick="loadFile('2024-11-23/10:41:55 - 13s - 1m')" class="file-item">10:41:55 - 13s - 1m</li>
+<li id="file-2024-11-23/10:40:54 - 11s - 1m" onclick="loadFile('2024-11-23/10:40:54 - 11s - 1m')" class="file-item">10:40:54 - 11s - 1m</li>
+<li id="file-2024-11-23/10:39:32 - 22s - 4m" onclick="loadFile('2024-11-23/10:39:32 - 22s - 4m')" class="file-item">10:39:32 - 22s - 4m</li>
+<li id="file-2024-11-23/10:32:17 - 38s - 2m" onclick="loadFile('2024-11-23/10:32:17 - 38s - 2m')" class="file-item">10:32:17 - 38s - 2m</li>
+<li id="file-2024-11-23/10:28:21 - 18s - 1m" onclick="loadFile('2024-11-23/10:28:21 - 18s - 1m')" class="file-item">10:28:21 - 18s - 1m</li>
 </ul>
 <li id="folder-2024-11-22" onclick="toggleFolder('2024-11-22')" class="folder-item">2024-11-22</li>
 <ul id="2024-11-22" style="display:none;">
-<li id="file-2024-11-22/08:20:01" onclick="loadFile('2024-11-22/08:20:01')" class="file-item">08:20:01</li>
-<li id="file-2024-11-22/08:18:40" onclick="loadFile('2024-11-22/08:18:40')" class="file-item">08:18:40</li>
-<li id="file-2024-11-22/08:15:47" onclick="loadFile('2024-11-22/08:15:47')" class="file-item">08:15:47</li>
-<li id="file-2024-11-22/08:05:04" onclick="loadFile('2024-11-22/08:05:04')" class="file-item">08:05:04</li>
-<li id="file-2024-11-22/08:03:17" onclick="loadFile('2024-11-22/08:03:17')" class="file-item">08:03:17</li>
-<li id="file-2024-11-22/08:01:30" onclick="loadFile('2024-11-22/08:01:30')" class="file-item">08:01:30</li>
+<li id="file-2024-11-22/08:20:01 - 25s - 2m" onclick="loadFile('2024-11-22/08:20:01 - 25s - 2m')" class="file-item">08:20:01 - 25s - 2m</li>
+<li id="file-2024-11-22/08:18:40 - 19s - 3m" onclick="loadFile('2024-11-22/08:18:40 - 19s - 3m')" class="file-item">08:18:40 - 19s - 3m</li>
+<li id="file-2024-11-22/08:15:47 - 28s - 2m" onclick="loadFile('2024-11-22/08:15:47 - 28s - 2m')" class="file-item">08:15:47 - 28s - 2m</li>
+<li id="file-2024-11-22/08:05:04 - 15s - 2m" onclick="loadFile('2024-11-22/08:05:04 - 15s - 2m')" class="file-item">08:05:04 - 15s - 2m</li>
+<li id="file-2024-11-22/08:03:17 - 17s - 2m" onclick="loadFile('2024-11-22/08:03:17 - 17s - 2m')" class="file-item">08:03:17 - 17s - 2m</li>
+<li id="file-2024-11-22/08:01:30 - 24s - 2m" onclick="loadFile('2024-11-22/08:01:30 - 24s - 2m')" class="file-item">08:01:30 - 24s - 2m</li>
 </ul>
 <li id="folder-2024-11-20" onclick="toggleFolder('2024-11-20')" class="folder-item">2024-11-20</li>
 <ul id="2024-11-20" style="display:none;">
-<li id="file-2024-11-20/13:27:37" onclick="loadFile('2024-11-20/13:27:37')" class="file-item">13:27:37</li>
-<li id="file-2024-11-20/13:24:34" onclick="loadFile('2024-11-20/13:24:34')" class="file-item">13:24:34</li>
-<li id="file-2024-11-20/13:22:41" onclick="loadFile('2024-11-20/13:22:41')" class="file-item">13:22:41</li>
-<li id="file-2024-11-20/13:21:19" onclick="loadFile('2024-11-20/13:21:19')" class="file-item">13:21:19</li>
-<li id="file-2024-11-20/13:17:04" onclick="loadFile('2024-11-20/13:17:04')" class="file-item">13:17:04</li>
-<li id="file-2024-11-20/13:14:38" onclick="loadFile('2024-11-20/13:14:38')" class="file-item">13:14:38</li>
-<li id="file-2024-11-20/13:13:56" onclick="loadFile('2024-11-20/13:13:56')" class="file-item">13:13:56</li>
-<li id="file-2024-11-20/13:08:16" onclick="loadFile('2024-11-20/13:08:16')" class="file-item">13:08:16</li>
-<li id="file-2024-11-20/13:07:33" onclick="loadFile('2024-11-20/13:07:33')" class="file-item">13:07:33</li>
-<li id="file-2024-11-20/11:30:16" onclick="loadFile('2024-11-20/11:30:16')" class="file-item">11:30:16</li>
-<li id="file-2024-11-20/11:27:24" onclick="loadFile('2024-11-20/11:27:24')" class="file-item">11:27:24</li>
-<li id="file-2024-11-20/11:25:11" onclick="loadFile('2024-11-20/11:25:11')" class="file-item">11:25:11</li>
-<li id="file-2024-11-20/11:21:17" onclick="loadFile('2024-11-20/11:21:17')" class="file-item">11:21:17</li>
+<li id="file-2024-11-20/13:27:37 - 19s - 3m" onclick="loadFile('2024-11-20/13:27:37 - 19s - 3m')" class="file-item">13:27:37 - 19s - 3m</li>
+<li id="file-2024-11-20/13:24:34 - 34s - 3m" onclick="loadFile('2024-11-20/13:24:34 - 34s - 3m')" class="file-item">13:24:34 - 34s - 3m</li>
+<li id="file-2024-11-20/13:22:41 - 21s - 3m" onclick="loadFile('2024-11-20/13:22:41 - 21s - 3m')" class="file-item">13:22:41 - 21s - 3m</li>
+<li id="file-2024-11-20/13:21:19 - 14s - 2m" onclick="loadFile('2024-11-20/13:21:19 - 14s - 2m')" class="file-item">13:21:19 - 14s - 2m</li>
+<li id="file-2024-11-20/13:17:04 - 17s - 1m" onclick="loadFile('2024-11-20/13:17:04 - 17s - 1m')" class="file-item">13:17:04 - 17s - 1m</li>
+<li id="file-2024-11-20/13:14:38 - 20s - 2m" onclick="loadFile('2024-11-20/13:14:38 - 20s - 2m')" class="file-item">13:14:38 - 20s - 2m</li>
+<li id="file-2024-11-20/13:13:56 - 8s - 1m" onclick="loadFile('2024-11-20/13:13:56 - 8s - 1m')" class="file-item">13:13:56 - 8s - 1m</li>
+<li id="file-2024-11-20/13:08:16 - 15s - 2m" onclick="loadFile('2024-11-20/13:08:16 - 15s - 2m')" class="file-item">13:08:16 - 15s - 2m</li>
+<li id="file-2024-11-20/13:07:33 - 8s - 1m" onclick="loadFile('2024-11-20/13:07:33 - 8s - 1m')" class="file-item">13:07:33 - 8s - 1m</li>
+<li id="file-2024-11-20/11:30:16 - 21s - 6m" onclick="loadFile('2024-11-20/11:30:16 - 21s - 6m')" class="file-item">11:30:16 - 21s - 6m</li>
+<li id="file-2024-11-20/11:27:24 - 15s - 3m" onclick="loadFile('2024-11-20/11:27:24 - 15s - 3m')" class="file-item">11:27:24 - 15s - 3m</li>
+<li id="file-2024-11-20/11:25:11 - 24s - 7m" onclick="loadFile('2024-11-20/11:25:11 - 24s - 7m')" class="file-item">11:25:11 - 24s - 7m</li>
+<li id="file-2024-11-20/11:21:17 - 26s - 8m" onclick="loadFile('2024-11-20/11:21:17 - 26s - 8m')" class="file-item">11:21:17 - 26s - 8m</li>
 </ul>
 <li id="folder-2024-11-19" onclick="toggleFolder('2024-11-19')" class="folder-item">2024-11-19</li>
 <ul id="2024-11-19" style="display:none;">
-<li id="file-2024-11-19/11:08:41" onclick="loadFile('2024-11-19/11:08:41')" class="file-item">11:08:41</li>
-<li id="file-2024-11-19/10:06:06" onclick="loadFile('2024-11-19/10:06:06')" class="file-item">10:06:06</li>
-<li id="file-2024-11-19/10:02:54" onclick="loadFile('2024-11-19/10:02:54')" class="file-item">10:02:54</li>
-<li id="file-2024-11-19/09:56:01" onclick="loadFile('2024-11-19/09:56:01')" class="file-item">09:56:01</li>
-<li id="file-2024-11-19/09:53:22" onclick="loadFile('2024-11-19/09:53:22')" class="file-item">09:53:22</li>
-<li id="file-2024-11-19/09:50:22" onclick="loadFile('2024-11-19/09:50:22')" class="file-item">09:50:22</li>
-<li id="file-2024-11-19/09:48:20" onclick="loadFile('2024-11-19/09:48:20')" class="file-item">09:48:20</li>
-<li id="file-2024-11-19/09:46:35" onclick="loadFile('2024-11-19/09:46:35')" class="file-item">09:46:35</li>
-<li id="file-2024-11-19/09:44:21" onclick="loadFile('2024-11-19/09:44:21')" class="file-item">09:44:21</li>
-<li id="file-2024-11-19/09:41:51" onclick="loadFile('2024-11-19/09:41:51')" class="file-item">09:41:51</li>
-<li id="file-2024-11-19/09:40:16" onclick="loadFile('2024-11-19/09:40:16')" class="file-item">09:40:16</li>
-<li id="file-2024-11-19/09:38:55" onclick="loadFile('2024-11-19/09:38:55')" class="file-item">09:38:55</li>
-<li id="file-2024-11-19/09:34:44" onclick="loadFile('2024-11-19/09:34:44')" class="file-item">09:34:44</li>
-<li id="file-2024-11-19/09:32:48" onclick="loadFile('2024-11-19/09:32:48')" class="file-item">09:32:48</li>
-<li id="file-2024-11-19/09:30:52" onclick="loadFile('2024-11-19/09:30:52')" class="file-item">09:30:52</li>
-<li id="file-2024-11-19/09:27:55" onclick="loadFile('2024-11-19/09:27:55')" class="file-item">09:27:55</li>
-<li id="file-2024-11-19/09:23:58" onclick="loadFile('2024-11-19/09:23:58')" class="file-item">09:23:58</li>
-<li id="file-2024-11-19/09:13:21" onclick="loadFile('2024-11-19/09:13:21')" class="file-item">09:13:21</li>
-<li id="file-2024-11-19/09:08:42" onclick="loadFile('2024-11-19/09:08:42')" class="file-item">09:08:42</li>
-<li id="file-2024-11-19/09:04:09" onclick="loadFile('2024-11-19/09:04:09')" class="file-item">09:04:09</li>
-<li id="file-2024-11-19/09:01:30" onclick="loadFile('2024-11-19/09:01:30')" class="file-item">09:01:30</li>
-<li id="file-2024-11-19/08:56:43" onclick="loadFile('2024-11-19/08:56:43')" class="file-item">08:56:43</li>
-<li id="file-2024-11-19/08:51:15" onclick="loadFile('2024-11-19/08:51:15')" class="file-item">08:51:15</li>
+<li id="file-2024-11-19/11:08:41 - 16s - 1m" onclick="loadFile('2024-11-19/11:08:41 - 16s - 1m')" class="file-item">11:08:41 - 16s - 1m</li>
+<li id="file-2024-11-19/10:06:06 - 22s - 1m" onclick="loadFile('2024-11-19/10:06:06 - 22s - 1m')" class="file-item">10:06:06 - 22s - 1m</li>
+<li id="file-2024-11-19/10:02:54 - 22s - 4m" onclick="loadFile('2024-11-19/10:02:54 - 22s - 4m')" class="file-item">10:02:54 - 22s - 4m</li>
+<li id="file-2024-11-19/09:56:01 - 26s - 8m" onclick="loadFile('2024-11-19/09:56:01 - 26s - 8m')" class="file-item">09:56:01 - 26s - 8m</li>
+<li id="file-2024-11-19/09:53:22 - 29s - 7m" onclick="loadFile('2024-11-19/09:53:22 - 29s - 7m')" class="file-item">09:53:22 - 29s - 7m</li>
+<li id="file-2024-11-19/09:50:22 - 26s - 6m" onclick="loadFile('2024-11-19/09:50:22 - 26s - 6m')" class="file-item">09:50:22 - 26s - 6m</li>
+<li id="file-2024-11-19/09:48:20 - 30s - 4m" onclick="loadFile('2024-11-19/09:48:20 - 30s - 4m')" class="file-item">09:48:20 - 30s - 4m</li>
+<li id="file-2024-11-19/09:46:35 - 15s - 2m" onclick="loadFile('2024-11-19/09:46:35 - 15s - 2m')" class="file-item">09:46:35 - 15s - 2m</li>
+<li id="file-2024-11-19/09:44:21 - 29s - 4m" onclick="loadFile('2024-11-19/09:44:21 - 29s - 4m')" class="file-item">09:44:21 - 29s - 4m</li>
+<li id="file-2024-11-19/09:41:51 - 32s - 3m" onclick="loadFile('2024-11-19/09:41:51 - 32s - 3m')" class="file-item">09:41:51 - 32s - 3m</li>
+<li id="file-2024-11-19/09:40:16 - 27s - 3m" onclick="loadFile('2024-11-19/09:40:16 - 27s - 3m')" class="file-item">09:40:16 - 27s - 3m</li>
+<li id="file-2024-11-19/09:38:55 - 30s - 2m" onclick="loadFile('2024-11-19/09:38:55 - 30s - 2m')" class="file-item">09:38:55 - 30s - 2m</li>
+<li id="file-2024-11-19/09:34:44 - 17s - 3m" onclick="loadFile('2024-11-19/09:34:44 - 17s - 3m')" class="file-item">09:34:44 - 17s - 3m</li>
+<li id="file-2024-11-19/09:32:48 - 23s - 6m" onclick="loadFile('2024-11-19/09:32:48 - 23s - 6m')" class="file-item">09:32:48 - 23s - 6m</li>
+<li id="file-2024-11-19/09:30:52 - 41s - 3m" onclick="loadFile('2024-11-19/09:30:52 - 41s - 3m')" class="file-item">09:30:52 - 41s - 3m</li>
+<li id="file-2024-11-19/09:27:55 - 36s - 5m" onclick="loadFile('2024-11-19/09:27:55 - 36s - 5m')" class="file-item">09:27:55 - 36s - 5m</li>
+<li id="file-2024-11-19/09:23:58 - 46s - 9m" onclick="loadFile('2024-11-19/09:23:58 - 46s - 9m')" class="file-item">09:23:58 - 46s - 9m</li>
+<li id="file-2024-11-19/09:13:21 - 32s - 8m" onclick="loadFile('2024-11-19/09:13:21 - 32s - 8m')" class="file-item">09:13:21 - 32s - 8m</li>
+<li id="file-2024-11-19/09:08:42 - 33s - 11m" onclick="loadFile('2024-11-19/09:08:42 - 33s - 11m')" class="file-item">09:08:42 - 33s - 11m</li>
+<li id="file-2024-11-19/09:04:09 - 21s - 5m" onclick="loadFile('2024-11-19/09:04:09 - 21s - 5m')" class="file-item">09:04:09 - 21s - 5m</li>
+<li id="file-2024-11-19/09:01:30 - 37s - 6m" onclick="loadFile('2024-11-19/09:01:30 - 37s - 6m')" class="file-item">09:01:30 - 37s - 6m</li>
+<li id="file-2024-11-19/08:56:43 - 41s - 4m" onclick="loadFile('2024-11-19/08:56:43 - 41s - 4m')" class="file-item">08:56:43 - 41s - 4m</li>
+<li id="file-2024-11-19/08:51:15 - 36s - 5m" onclick="loadFile('2024-11-19/08:51:15 - 36s - 5m')" class="file-item">08:51:15 - 36s - 5m</li>
 </ul>
 <li id="folder-2024-11-18" onclick="toggleFolder('2024-11-18')" class="folder-item">2024-11-18</li>
 <ul id="2024-11-18" style="display:none;">
-<li id="file-2024-11-18/15:02:52" onclick="loadFile('2024-11-18/15:02:52')" class="file-item">15:02:52</li>
-<li id="file-2024-11-18/14:57:42" onclick="loadFile('2024-11-18/14:57:42')" class="file-item">14:57:42</li>
-<li id="file-2024-11-18/14:53:42" onclick="loadFile('2024-11-18/14:53:42')" class="file-item">14:53:42</li>
-<li id="file-2024-11-18/14:44:20" onclick="loadFile('2024-11-18/14:44:20')" class="file-item">14:44:20</li>
-<li id="file-2024-11-18/14:41:37" onclick="loadFile('2024-11-18/14:41:37')" class="file-item">14:41:37</li>
-<li id="file-2024-11-18/14:39:03" onclick="loadFile('2024-11-18/14:39:03')" class="file-item">14:39:03</li>
+<li id="file-2024-11-18/15:02:52 - 60s - 5m" onclick="loadFile('2024-11-18/15:02:52 - 60s - 5m')" class="file-item">15:02:52 - 60s - 5m</li>
+<li id="file-2024-11-18/14:57:42 - 62s - 4m" onclick="loadFile('2024-11-18/14:57:42 - 62s - 4m')" class="file-item">14:57:42 - 62s - 4m</li>
+<li id="file-2024-11-18/14:53:42 - 65s - 2m" onclick="loadFile('2024-11-18/14:53:42 - 65s - 2m')" class="file-item">14:53:42 - 65s - 2m</li>
+<li id="file-2024-11-18/14:44:20 - 52s - 1m" onclick="loadFile('2024-11-18/14:44:20 - 52s - 1m')" class="file-item">14:44:20 - 52s - 1m</li>
+<li id="file-2024-11-18/14:41:37 - 13s - 1m" onclick="loadFile('2024-11-18/14:41:37 - 13s - 1m')" class="file-item">14:41:37 - 13s - 1m</li>
+<li id="file-2024-11-18/14:39:03 - 32s - 1m" onclick="loadFile('2024-11-18/14:39:03 - 32s - 1m')" class="file-item">14:39:03 - 32s - 1m</li>
 </ul>
 <li id="folder-2024-11-03" onclick="toggleFolder('2024-11-03')" class="folder-item">2024-11-03</li>
 <ul id="2024-11-03" style="display:none;">
-<li id="file-2024-11-03/11:57:19" onclick="loadFile('2024-11-03/11:57:19')" class="file-item">11:57:19</li>
-<li id="file-2024-11-03/11:46:32" onclick="loadFile('2024-11-03/11:46:32')" class="file-item">11:46:32</li>
-<li id="file-2024-11-03/11:37:06" onclick="loadFile('2024-11-03/11:37:06')" class="file-item">11:37:06</li>
-<li id="file-2024-11-03/11:28:33" onclick="loadFile('2024-11-03/11:28:33')" class="file-item">11:28:33</li>
-<li id="file-2024-11-03/11:21:01" onclick="loadFile('2024-11-03/11:21:01')" class="file-item">11:21:01</li>
-<li id="file-2024-11-03/11:11:17" onclick="loadFile('2024-11-03/11:11:17')" class="file-item">11:11:17</li>
-<li id="file-2024-11-03/10:57:28" onclick="loadFile('2024-11-03/10:57:28')" class="file-item">10:57:28</li>
-<li id="file-2024-11-03/10:50:40" onclick="loadFile('2024-11-03/10:50:40')" class="file-item">10:50:40</li>
-<li id="file-2024-11-03/10:42:34" onclick="loadFile('2024-11-03/10:42:34')" class="file-item">10:42:34</li>
-<li id="file-2024-11-03/10:34:43" onclick="loadFile('2024-11-03/10:34:43')" class="file-item">10:34:43</li>
-<li id="file-2024-11-03/10:27:16" onclick="loadFile('2024-11-03/10:27:16')" class="file-item">10:27:16</li>
+<li id="file-2024-11-03/11:57:19 - 63s - 20m" onclick="loadFile('2024-11-03/11:57:19 - 63s - 20m')" class="file-item">11:57:19 - 63s - 20m</li>
+<li id="file-2024-11-03/11:46:32 - 67s - 10m" onclick="loadFile('2024-11-03/11:46:32 - 67s - 10m')" class="file-item">11:46:32 - 67s - 10m</li>
+<li id="file-2024-11-03/11:37:06 - 57s - 15m" onclick="loadFile('2024-11-03/11:37:06 - 57s - 15m')" class="file-item">11:37:06 - 57s - 15m</li>
+<li id="file-2024-11-03/11:28:33 - 68s - 11m" onclick="loadFile('2024-11-03/11:28:33 - 68s - 11m')" class="file-item">11:28:33 - 68s - 11m</li>
+<li id="file-2024-11-03/11:21:01 - 62s - 22m" onclick="loadFile('2024-11-03/11:21:01 - 62s - 22m')" class="file-item">11:21:01 - 62s - 22m</li>
+<li id="file-2024-11-03/11:11:17 - 66s - 20m" onclick="loadFile('2024-11-03/11:11:17 - 66s - 20m')" class="file-item">11:11:17 - 66s - 20m</li>
+<li id="file-2024-11-03/10:57:28 - 66s - 20m" onclick="loadFile('2024-11-03/10:57:28 - 66s - 20m')" class="file-item">10:57:28 - 66s - 20m</li>
+<li id="file-2024-11-03/10:50:40 - 63s - 15m" onclick="loadFile('2024-11-03/10:50:40 - 63s - 15m')" class="file-item">10:50:40 - 63s - 15m</li>
+<li id="file-2024-11-03/10:42:34 - 58s - 20m" onclick="loadFile('2024-11-03/10:42:34 - 58s - 20m')" class="file-item">10:42:34 - 58s - 20m</li>
+<li id="file-2024-11-03/10:34:43 - 74s - 10m" onclick="loadFile('2024-11-03/10:34:43 - 74s - 10m')" class="file-item">10:34:43 - 74s - 10m</li>
+<li id="file-2024-11-03/10:27:16 - 64s - 10m" onclick="loadFile('2024-11-03/10:27:16 - 64s - 10m')" class="file-item">10:27:16 - 64s - 10m</li>
 </ul>
 <li id="folder-2024-10-27" onclick="toggleFolder('2024-10-27')" class="folder-item">2024-10-27</li>
 <ul id="2024-10-27" style="display:none;">
-<li id="file-2024-10-27/11:29:06" onclick="loadFile('2024-10-27/11:29:06')" class="file-item">11:29:06</li>
-<li id="file-2024-10-27/11:20:59" onclick="loadFile('2024-10-27/11:20:59')" class="file-item">11:20:59</li>
-<li id="file-2024-10-27/11:11:58" onclick="loadFile('2024-10-27/11:11:58')" class="file-item">11:11:58</li>
-<li id="file-2024-10-27/11:02:43" onclick="loadFile('2024-10-27/11:02:43')" class="file-item">11:02:43</li>
-<li id="file-2024-10-27/10:56:13" onclick="loadFile('2024-10-27/10:56:13')" class="file-item">10:56:13</li>
-<li id="file-2024-10-27/10:47:07" onclick="loadFile('2024-10-27/10:47:07')" class="file-item">10:47:07</li>
-<li id="file-2024-10-27/10:39:52" onclick="loadFile('2024-10-27/10:39:52')" class="file-item">10:39:52</li>
-<li id="file-2024-10-27/10:32:02" onclick="loadFile('2024-10-27/10:32:02')" class="file-item">10:32:02</li>
-<li id="file-2024-10-27/10:25:09" onclick="loadFile('2024-10-27/10:25:09')" class="file-item">10:25:09</li>
-<li id="file-2024-10-27/10:18:09" onclick="loadFile('2024-10-27/10:18:09')" class="file-item">10:18:09</li>
-<li id="file-2024-10-27/10:12:30" onclick="loadFile('2024-10-27/10:12:30')" class="file-item">10:12:30</li>
-<li id="file-2024-10-27/10:12:23" onclick="loadFile('2024-10-27/10:12:23')" class="file-item">10:12:23</li>
+<li id="file-2024-10-27/11:29:06 - 84s - 10m" onclick="loadFile('2024-10-27/11:29:06 - 84s - 10m')" class="file-item">11:29:06 - 84s - 10m</li>
+<li id="file-2024-10-27/11:20:59 - 72s - 10m" onclick="loadFile('2024-10-27/11:20:59 - 72s - 10m')" class="file-item">11:20:59 - 72s - 10m</li>
+<li id="file-2024-10-27/11:11:58 - 80s - 10m" onclick="loadFile('2024-10-27/11:11:58 - 80s - 10m')" class="file-item">11:11:58 - 80s - 10m</li>
+<li id="file-2024-10-27/11:02:43 - 79s - 10m" onclick="loadFile('2024-10-27/11:02:43 - 79s - 10m')" class="file-item">11:02:43 - 79s - 10m</li>
+<li id="file-2024-10-27/10:56:13 - 65s - 20m" onclick="loadFile('2024-10-27/10:56:13 - 65s - 20m')" class="file-item">10:56:13 - 65s - 20m</li>
+<li id="file-2024-10-27/10:47:07 - 67s - 15m" onclick="loadFile('2024-10-27/10:47:07 - 67s - 15m')" class="file-item">10:47:07 - 67s - 15m</li>
+<li id="file-2024-10-27/10:39:52 - 64s - 15m" onclick="loadFile('2024-10-27/10:39:52 - 64s - 15m')" class="file-item">10:39:52 - 64s - 15m</li>
+<li id="file-2024-10-27/10:32:02 - 62s - 10m" onclick="loadFile('2024-10-27/10:32:02 - 62s - 10m')" class="file-item">10:32:02 - 62s - 10m</li>
+<li id="file-2024-10-27/10:25:09 - 67s - 10m" onclick="loadFile('2024-10-27/10:25:09 - 67s - 10m')" class="file-item">10:25:09 - 67s - 10m</li>
+<li id="file-2024-10-27/10:18:09 - 51s - 10m" onclick="loadFile('2024-10-27/10:18:09 - 51s - 10m')" class="file-item">10:18:09 - 51s - 10m</li>
+<li id="file-2024-10-27/10:12:30 - 28s - 6m" onclick="loadFile('2024-10-27/10:12:30 - 28s - 6m')" class="file-item">10:12:30 - 28s - 6m</li>
+<li id="file-2024-10-27/10:12:23 - 3s - 1m" onclick="loadFile('2024-10-27/10:12:23 - 3s - 1m')" class="file-item">10:12:23 - 3s - 1m</li>
 </ul>
 <li id="folder-2024-10-20" onclick="toggleFolder('2024-10-20')" class="folder-item">2024-10-20</li>
 <ul id="2024-10-20" style="display:none;">
-<li id="file-2024-10-20/11:46:58" onclick="loadFile('2024-10-20/11:46:58')" class="file-item">11:46:58</li>
-<li id="file-2024-10-20/11:39:12" onclick="loadFile('2024-10-20/11:39:12')" class="file-item">11:39:12</li>
-<li id="file-2024-10-20/11:35:54" onclick="loadFile('2024-10-20/11:35:54')" class="file-item">11:35:54</li>
-<li id="file-2024-10-20/11:15:22" onclick="loadFile('2024-10-20/11:15:22')" class="file-item">11:15:22</li>
-<li id="file-2024-10-20/11:05:32" onclick="loadFile('2024-10-20/11:05:32')" class="file-item">11:05:32</li>
-<li id="file-2024-10-20/10:51:15" onclick="loadFile('2024-10-20/10:51:15')" class="file-item">10:51:15</li>
-<li id="file-2024-10-20/10:41:08" onclick="loadFile('2024-10-20/10:41:08')" class="file-item">10:41:08</li>
-<li id="file-2024-10-20/10:31:31" onclick="loadFile('2024-10-20/10:31:31')" class="file-item">10:31:31</li>
-<li id="file-2024-10-20/10:22:30" onclick="loadFile('2024-10-20/10:22:30')" class="file-item">10:22:30</li>
-<li id="file-2024-10-20/10:15:27" onclick="loadFile('2024-10-20/10:15:27')" class="file-item">10:15:27</li>
-<li id="file-2024-10-20/09:51:08" onclick="loadFile('2024-10-20/09:51:08')" class="file-item">09:51:08</li>
+<li id="file-2024-10-20/11:46:58 - 20s - 3m" onclick="loadFile('2024-10-20/11:46:58 - 20s - 3m')" class="file-item">11:46:58 - 20s - 3m</li>
+<li id="file-2024-10-20/11:39:12 - 19s - 3m" onclick="loadFile('2024-10-20/11:39:12 - 19s - 3m')" class="file-item">11:39:12 - 19s - 3m</li>
+<li id="file-2024-10-20/11:35:54 - 5s - 1m" onclick="loadFile('2024-10-20/11:35:54 - 5s - 1m')" class="file-item">11:35:54 - 5s - 1m</li>
+<li id="file-2024-10-20/11:15:22 - 29s - 10m" onclick="loadFile('2024-10-20/11:15:22 - 29s - 10m')" class="file-item">11:15:22 - 29s - 10m</li>
+<li id="file-2024-10-20/11:05:32 - 30s - 9m" onclick="loadFile('2024-10-20/11:05:32 - 30s - 9m')" class="file-item">11:05:32 - 30s - 9m</li>
+<li id="file-2024-10-20/10:51:15 - 47s - 19m" onclick="loadFile('2024-10-20/10:51:15 - 47s - 19m')" class="file-item">10:51:15 - 47s - 19m</li>
+<li id="file-2024-10-20/10:41:08 - 40s - 14m" onclick="loadFile('2024-10-20/10:41:08 - 40s - 14m')" class="file-item">10:41:08 - 40s - 14m</li>
+<li id="file-2024-10-20/10:31:31 - 49s - 14m" onclick="loadFile('2024-10-20/10:31:31 - 49s - 14m')" class="file-item">10:31:31 - 49s - 14m</li>
+<li id="file-2024-10-20/10:22:30 - 53s - 10m" onclick="loadFile('2024-10-20/10:22:30 - 53s - 10m')" class="file-item">10:22:30 - 53s - 10m</li>
+<li id="file-2024-10-20/10:15:27 - 43s - 4m" onclick="loadFile('2024-10-20/10:15:27 - 43s - 4m')" class="file-item">10:15:27 - 43s - 4m</li>
+<li id="file-2024-10-20/09:51:08 - 2s - 1m" onclick="loadFile('2024-10-20/09:51:08 - 2s - 1m')" class="file-item">09:51:08 - 2s - 1m</li>
 </ul>
 <li id="folder-2024-09-29" onclick="toggleFolder('2024-09-29')" class="folder-item">2024-09-29</li>
 <ul id="2024-09-29" style="display:none;">
-<li id="file-2024-09-29/11:27:32" onclick="loadFile('2024-09-29/11:27:32')" class="file-item">11:27:32</li>
-<li id="file-2024-09-29/11:20:49" onclick="loadFile('2024-09-29/11:20:49')" class="file-item">11:20:49</li>
-<li id="file-2024-09-29/11:09:41" onclick="loadFile('2024-09-29/11:09:41')" class="file-item">11:09:41</li>
-<li id="file-2024-09-29/10:59:51" onclick="loadFile('2024-09-29/10:59:51')" class="file-item">10:59:51</li>
-<li id="file-2024-09-29/10:51:54" onclick="loadFile('2024-09-29/10:51:54')" class="file-item">10:51:54</li>
-<li id="file-2024-09-29/10:41:41" onclick="loadFile('2024-09-29/10:41:41')" class="file-item">10:41:41</li>
-<li id="file-2024-09-29/10:31:44" onclick="loadFile('2024-09-29/10:31:44')" class="file-item">10:31:44</li>
-<li id="file-2024-09-29/10:22:41" onclick="loadFile('2024-09-29/10:22:41')" class="file-item">10:22:41</li>
-<li id="file-2024-09-29/10:12:45" onclick="loadFile('2024-09-29/10:12:45')" class="file-item">10:12:45</li>
-<li id="file-2024-09-29/10:00:20" onclick="loadFile('2024-09-29/10:00:20')" class="file-item">10:00:20</li>
+<li id="file-2024-09-29/11:27:32 - 29s - 9m" onclick="loadFile('2024-09-29/11:27:32 - 29s - 9m')" class="file-item">11:27:32 - 29s - 9m</li>
+<li id="file-2024-09-29/11:20:49 - 61s - 16m" onclick="loadFile('2024-09-29/11:20:49 - 61s - 16m')" class="file-item">11:20:49 - 61s - 16m</li>
+<li id="file-2024-09-29/11:09:41 - 61s - 16m" onclick="loadFile('2024-09-29/11:09:41 - 61s - 16m')" class="file-item">11:09:41 - 61s - 16m</li>
+<li id="file-2024-09-29/10:59:51 - 68s - 13m" onclick="loadFile('2024-09-29/10:59:51 - 68s - 13m')" class="file-item">10:59:51 - 68s - 13m</li>
+<li id="file-2024-09-29/10:51:54 - 60s - 12m" onclick="loadFile('2024-09-29/10:51:54 - 60s - 12m')" class="file-item">10:51:54 - 60s - 12m</li>
+<li id="file-2024-09-29/10:41:41 - 69s - 13m" onclick="loadFile('2024-09-29/10:41:41 - 69s - 13m')" class="file-item">10:41:41 - 69s - 13m</li>
+<li id="file-2024-09-29/10:31:44 - 61s - 13m" onclick="loadFile('2024-09-29/10:31:44 - 61s - 13m')" class="file-item">10:31:44 - 61s - 13m</li>
+<li id="file-2024-09-29/10:22:41 - 60s - 13m" onclick="loadFile('2024-09-29/10:22:41 - 60s - 13m')" class="file-item">10:22:41 - 60s - 13m</li>
+<li id="file-2024-09-29/10:12:45 - 59s - 9m" onclick="loadFile('2024-09-29/10:12:45 - 59s - 9m')" class="file-item">10:12:45 - 59s - 9m</li>
+<li id="file-2024-09-29/10:00:20 - 48s - 4m" onclick="loadFile('2024-09-29/10:00:20 - 48s - 4m')" class="file-item">10:00:20 - 48s - 4m</li>
 </ul>
 <li id="folder-2024-09-28" onclick="toggleFolder('2024-09-28')" class="folder-item">2024-09-28</li>
 <ul id="2024-09-28" style="display:none;">
-<li id="file-2024-09-28/16:49:07" onclick="loadFile('2024-09-28/16:49:07')" class="file-item">16:49:07</li>
-<li id="file-2024-09-28/16:46:52" onclick="loadFile('2024-09-28/16:46:52')" class="file-item">16:46:52</li>
-<li id="file-2024-09-28/16:43:09" onclick="loadFile('2024-09-28/16:43:09')" class="file-item">16:43:09</li>
-<li id="file-2024-09-28/16:39:33" onclick="loadFile('2024-09-28/16:39:33')" class="file-item">16:39:33</li>
-<li id="file-2024-09-28/16:38:40" onclick="loadFile('2024-09-28/16:38:40')" class="file-item">16:38:40</li>
-<li id="file-2024-09-28/16:31:00" onclick="loadFile('2024-09-28/16:31:00')" class="file-item">16:31:00</li>
-<li id="file-2024-09-28/16:22:20" onclick="loadFile('2024-09-28/16:22:20')" class="file-item">16:22:20</li>
-<li id="file-2024-09-28/16:19:20" onclick="loadFile('2024-09-28/16:19:20')" class="file-item">16:19:20</li>
-<li id="file-2024-09-28/16:14:16" onclick="loadFile('2024-09-28/16:14:16')" class="file-item">16:14:16</li>
-<li id="file-2024-09-28/16:11:47" onclick="loadFile('2024-09-28/16:11:47')" class="file-item">16:11:47</li>
-<li id="file-2024-09-28/16:09:41" onclick="loadFile('2024-09-28/16:09:41')" class="file-item">16:09:41</li>
-<li id="file-2024-09-28/16:05:27" onclick="loadFile('2024-09-28/16:05:27')" class="file-item">16:05:27</li>
-<li id="file-2024-09-28/16:02:08" onclick="loadFile('2024-09-28/16:02:08')" class="file-item">16:02:08</li>
-<li id="file-2024-09-28/15:37:50" onclick="loadFile('2024-09-28/15:37:50')" class="file-item">15:37:50</li>
-<li id="file-2024-09-28/15:30:46" onclick="loadFile('2024-09-28/15:30:46')" class="file-item">15:30:46</li>
-<li id="file-2024-09-28/15:22:41" onclick="loadFile('2024-09-28/15:22:41')" class="file-item">15:22:41</li>
-<li id="file-2024-09-28/15:16:55" onclick="loadFile('2024-09-28/15:16:55')" class="file-item">15:16:55</li>
-<li id="file-2024-09-28/15:11:12" onclick="loadFile('2024-09-28/15:11:12')" class="file-item">15:11:12</li>
-<li id="file-2024-09-28/15:05:00" onclick="loadFile('2024-09-28/15:05:00')" class="file-item">15:05:00</li>
-<li id="file-2024-09-28/15:01:42" onclick="loadFile('2024-09-28/15:01:42')" class="file-item">15:01:42</li>
+<li id="file-2024-09-28/16:49:07 - 13s - 2m" onclick="loadFile('2024-09-28/16:49:07 - 13s - 2m')" class="file-item">16:49:07 - 13s - 2m</li>
+<li id="file-2024-09-28/16:46:52 - 12s - 3m" onclick="loadFile('2024-09-28/16:46:52 - 12s - 3m')" class="file-item">16:46:52 - 12s - 3m</li>
+<li id="file-2024-09-28/16:43:09 - 39s - 4m" onclick="loadFile('2024-09-28/16:43:09 - 39s - 4m')" class="file-item">16:43:09 - 39s - 4m</li>
+<li id="file-2024-09-28/16:39:33 - 13s - 3m" onclick="loadFile('2024-09-28/16:39:33 - 13s - 3m')" class="file-item">16:39:33 - 13s - 3m</li>
+<li id="file-2024-09-28/16:38:40 - 12s - 1m" onclick="loadFile('2024-09-28/16:38:40 - 12s - 1m')" class="file-item">16:38:40 - 12s - 1m</li>
+<li id="file-2024-09-28/16:31:00 - 12s - 3m" onclick="loadFile('2024-09-28/16:31:00 - 12s - 3m')" class="file-item">16:31:00 - 12s - 3m</li>
+<li id="file-2024-09-28/16:22:20 - 66s - 4m" onclick="loadFile('2024-09-28/16:22:20 - 66s - 4m')" class="file-item">16:22:20 - 66s - 4m</li>
+<li id="file-2024-09-28/16:19:20 - 2s - 1m" onclick="loadFile('2024-09-28/16:19:20 - 2s - 1m')" class="file-item">16:19:20 - 2s - 1m</li>
+<li id="file-2024-09-28/16:14:16 - 10s - 2m" onclick="loadFile('2024-09-28/16:14:16 - 10s - 2m')" class="file-item">16:14:16 - 10s - 2m</li>
+<li id="file-2024-09-28/16:11:47 - 5s - 1m" onclick="loadFile('2024-09-28/16:11:47 - 5s - 1m')" class="file-item">16:11:47 - 5s - 1m</li>
+<li id="file-2024-09-28/16:09:41 - 24s - 4m" onclick="loadFile('2024-09-28/16:09:41 - 24s - 4m')" class="file-item">16:09:41 - 24s - 4m</li>
+<li id="file-2024-09-28/16:05:27 - 10s - 3m" onclick="loadFile('2024-09-28/16:05:27 - 10s - 3m')" class="file-item">16:05:27 - 10s - 3m</li>
+<li id="file-2024-09-28/16:02:08 - 9s - 2m" onclick="loadFile('2024-09-28/16:02:08 - 9s - 2m')" class="file-item">16:02:08 - 9s - 2m</li>
+<li id="file-2024-09-28/15:37:50 - 72s - 4m" onclick="loadFile('2024-09-28/15:37:50 - 72s - 4m')" class="file-item">15:37:50 - 72s - 4m</li>
+<li id="file-2024-09-28/15:30:46 - 62s - 4m" onclick="loadFile('2024-09-28/15:30:46 - 62s - 4m')" class="file-item">15:30:46 - 62s - 4m</li>
+<li id="file-2024-09-28/15:22:41 - 81s - 4m" onclick="loadFile('2024-09-28/15:22:41 - 81s - 4m')" class="file-item">15:22:41 - 81s - 4m</li>
+<li id="file-2024-09-28/15:16:55 - 61s - 4m" onclick="loadFile('2024-09-28/15:16:55 - 61s - 4m')" class="file-item">15:16:55 - 61s - 4m</li>
+<li id="file-2024-09-28/15:11:12 - 30s - 4m" onclick="loadFile('2024-09-28/15:11:12 - 30s - 4m')" class="file-item">15:11:12 - 30s - 4m</li>
+<li id="file-2024-09-28/15:05:00 - 28s - 4m" onclick="loadFile('2024-09-28/15:05:00 - 28s - 4m')" class="file-item">15:05:00 - 28s - 4m</li>
+<li id="file-2024-09-28/15:01:42 - 24s - 4m" onclick="loadFile('2024-09-28/15:01:42 - 24s - 4m')" class="file-item">15:01:42 - 24s - 4m</li>
 </ul>
 <li id="folder-2024-08-28" onclick="toggleFolder('2024-08-28')" class="folder-item">2024-08-28</li>
 <ul id="2024-08-28" style="display:none;">
-<li id="file-2024-08-28/11:39:01" onclick="loadFile('2024-08-28/11:39:01')" class="file-item">11:39:01</li>
-<li id="file-2024-08-28/11:33:05" onclick="loadFile('2024-08-28/11:33:05')" class="file-item">11:33:05</li>
-<li id="file-2024-08-28/11:29:44" onclick="loadFile('2024-08-28/11:29:44')" class="file-item">11:29:44</li>
+<li id="file-2024-08-28/11:39:01 - 121s - 1m" onclick="loadFile('2024-08-28/11:39:01 - 121s - 1m')" class="file-item">11:39:01 - 121s - 1m</li>
+<li id="file-2024-08-28/11:33:05 - 91s - 1m" onclick="loadFile('2024-08-28/11:33:05 - 91s - 1m')" class="file-item">11:33:05 - 91s - 1m</li>
+<li id="file-2024-08-28/11:29:44 - 43s - 1m" onclick="loadFile('2024-08-28/11:29:44 - 43s - 1m')" class="file-item">11:29:44 - 43s - 1m</li>
 </ul>
 <li id="folder-2024-08-27" onclick="toggleFolder('2024-08-27')" class="folder-item">2024-08-27</li>
 <ul id="2024-08-27" style="display:none;">
-<li id="file-2024-08-27/16:14:29" onclick="loadFile('2024-08-27/16:14:29')" class="file-item">16:14:29</li>
-<li id="file-2024-08-27/16:08:51" onclick="loadFile('2024-08-27/16:08:51')" class="file-item">16:08:51</li>
+<li id="file-2024-08-27/16:14:29 - 152s - 1m" onclick="loadFile('2024-08-27/16:14:29 - 152s - 1m')" class="file-item">16:14:29 - 152s - 1m</li>
+<li id="file-2024-08-27/16:08:51 - 83s - 1m" onclick="loadFile('2024-08-27/16:08:51 - 83s - 1m')" class="file-item">16:08:51 - 83s - 1m</li>
 </ul>
 <li id="folder-2024-08-26" onclick="toggleFolder('2024-08-26')" class="folder-item">2024-08-26</li>
 <ul id="2024-08-26" style="display:none;">
-<li id="file-2024-08-26/15:39:12" onclick="loadFile('2024-08-26/15:39:12')" class="file-item">15:39:12</li>
-<li id="file-2024-08-26/15:34:04" onclick="loadFile('2024-08-26/15:34:04')" class="file-item">15:34:04</li>
+<li id="file-2024-08-26/15:39:12 - 132s - 1m" onclick="loadFile('2024-08-26/15:39:12 - 132s - 1m')" class="file-item">15:39:12 - 132s - 1m</li>
+<li id="file-2024-08-26/15:34:04 - 74s - 1m" onclick="loadFile('2024-08-26/15:34:04 - 74s - 1m')" class="file-item">15:34:04 - 74s - 1m</li>
 </ul>
 <li id="folder-2024-08-25" onclick="toggleFolder('2024-08-25')" class="folder-item">2024-08-25</li>
 <ul id="2024-08-25" style="display:none;">
-<li id="file-2024-08-25/16:14:11" onclick="loadFile('2024-08-25/16:14:11')" class="file-item">16:14:11</li>
-<li id="file-2024-08-25/16:07:07" onclick="loadFile('2024-08-25/16:07:07')" class="file-item">16:07:07</li>
-<li id="file-2024-08-25/16:02:17" onclick="loadFile('2024-08-25/16:02:17')" class="file-item">16:02:17</li>
-<li id="file-2024-08-25/15:57:39" onclick="loadFile('2024-08-25/15:57:39')" class="file-item">15:57:39</li>
-<li id="file-2024-08-25/15:54:53" onclick="loadFile('2024-08-25/15:54:53')" class="file-item">15:54:53</li>
-<li id="file-2024-08-25/15:54:35" onclick="loadFile('2024-08-25/15:54:35')" class="file-item">15:54:35</li>
-<li id="file-2024-08-25/15:52:14" onclick="loadFile('2024-08-25/15:52:14')" class="file-item">15:52:14</li>
+<li id="file-2024-08-25/16:14:11 - 121s - 1m" onclick="loadFile('2024-08-25/16:14:11 - 121s - 1m')" class="file-item">16:14:11 - 121s - 1m</li>
+<li id="file-2024-08-25/16:07:07 - 101s - 1m" onclick="loadFile('2024-08-25/16:07:07 - 101s - 1m')" class="file-item">16:07:07 - 101s - 1m</li>
+<li id="file-2024-08-25/16:02:17 - 67s - 1m" onclick="loadFile('2024-08-25/16:02:17 - 67s - 1m')" class="file-item">16:02:17 - 67s - 1m</li>
+<li id="file-2024-08-25/15:57:39 - 61s - 1m" onclick="loadFile('2024-08-25/15:57:39 - 61s - 1m')" class="file-item">15:57:39 - 61s - 1m</li>
+<li id="file-2024-08-25/15:54:53 - 3s - 1m" onclick="loadFile('2024-08-25/15:54:53 - 3s - 1m')" class="file-item">15:54:53 - 3s - 1m</li>
+<li id="file-2024-08-25/15:54:35 - 16s - 1m" onclick="loadFile('2024-08-25/15:54:35 - 16s - 1m')" class="file-item">15:54:35 - 16s - 1m</li>
+<li id="file-2024-08-25/15:52:14 - 7s - 1m" onclick="loadFile('2024-08-25/15:52:14 - 7s - 1m')" class="file-item">15:52:14 - 7s - 1m</li>
 </ul>
 <li id="folder-2024-08-18" onclick="toggleFolder('2024-08-18')" class="folder-item">2024-08-18</li>
 <ul id="2024-08-18" style="display:none;">
-<li id="file-2024-08-18/11:40:12" onclick="loadFile('2024-08-18/11:40:12')" class="file-item">11:40:12</li>
-<li id="file-2024-08-18/11:35:17" onclick="loadFile('2024-08-18/11:35:17')" class="file-item">11:35:17</li>
+<li id="file-2024-08-18/11:40:12 - 79s - 1m" onclick="loadFile('2024-08-18/11:40:12 - 79s - 1m')" class="file-item">11:40:12 - 79s - 1m</li>
+<li id="file-2024-08-18/11:35:17 - 70s - 1m" onclick="loadFile('2024-08-18/11:35:17 - 70s - 1m')" class="file-item">11:35:17 - 70s - 1m</li>
 </ul>
 <li id="folder-2024-08-17" onclick="toggleFolder('2024-08-17')" class="folder-item">2024-08-17</li>
 <ul id="2024-08-17" style="display:none;">
-<li id="file-2024-08-17/12:05:10" onclick="loadFile('2024-08-17/12:05:10')" class="file-item">12:05:10</li>
-<li id="file-2024-08-17/11:53:01" onclick="loadFile('2024-08-17/11:53:01')" class="file-item">11:53:01</li>
-<li id="file-2024-08-17/11:48:07" onclick="loadFile('2024-08-17/11:48:07')" class="file-item">11:48:07</li>
-<li id="file-2024-08-17/11:42:41" onclick="loadFile('2024-08-17/11:42:41')" class="file-item">11:42:41</li>
-<li id="file-2024-08-17/11:38:17" onclick="loadFile('2024-08-17/11:38:17')" class="file-item">11:38:17</li>
+<li id="file-2024-08-17/12:05:10 - 65s - 1m" onclick="loadFile('2024-08-17/12:05:10 - 65s - 1m')" class="file-item">12:05:10 - 65s - 1m</li>
+<li id="file-2024-08-17/11:53:01 - 79s - 1m" onclick="loadFile('2024-08-17/11:53:01 - 79s - 1m')" class="file-item">11:53:01 - 79s - 1m</li>
+<li id="file-2024-08-17/11:48:07 - 71s - 1m" onclick="loadFile('2024-08-17/11:48:07 - 71s - 1m')" class="file-item">11:48:07 - 71s - 1m</li>
+<li id="file-2024-08-17/11:42:41 - 80s - 1m" onclick="loadFile('2024-08-17/11:42:41 - 80s - 1m')" class="file-item">11:42:41 - 80s - 1m</li>
+<li id="file-2024-08-17/11:38:17 - 65s - 1m" onclick="loadFile('2024-08-17/11:38:17 - 65s - 1m')" class="file-item">11:38:17 - 65s - 1m</li>
 </ul>
 <li id="folder-2024-08-16" onclick="toggleFolder('2024-08-16')" class="folder-item">2024-08-16</li>
 <ul id="2024-08-16" style="display:none;">
-<li id="file-2024-08-16/12:51:49" onclick="loadFile('2024-08-16/12:51:49')" class="file-item">12:51:49</li>
-<li id="file-2024-08-16/12:45:09" onclick="loadFile('2024-08-16/12:45:09')" class="file-item">12:45:09</li>
-<li id="file-2024-08-16/12:40:57" onclick="loadFile('2024-08-16/12:40:57')" class="file-item">12:40:57</li>
-<li id="file-2024-08-16/12:36:02" onclick="loadFile('2024-08-16/12:36:02')" class="file-item">12:36:02</li>
-<li id="file-2024-08-16/12:31:47" onclick="loadFile('2024-08-16/12:31:47')" class="file-item">12:31:47</li>
-<li id="file-2024-08-16/12:29:47" onclick="loadFile('2024-08-16/12:29:47')" class="file-item">12:29:47</li>
+<li id="file-2024-08-16/12:51:49 - 36s - 1m" onclick="loadFile('2024-08-16/12:51:49 - 36s - 1m')" class="file-item">12:51:49 - 36s - 1m</li>
+<li id="file-2024-08-16/12:45:09 - 72s - 1m" onclick="loadFile('2024-08-16/12:45:09 - 72s - 1m')" class="file-item">12:45:09 - 72s - 1m</li>
+<li id="file-2024-08-16/12:40:57 - 69s - 1m" onclick="loadFile('2024-08-16/12:40:57 - 69s - 1m')" class="file-item">12:40:57 - 69s - 1m</li>
+<li id="file-2024-08-16/12:36:02 - 71s - 1m" onclick="loadFile('2024-08-16/12:36:02 - 71s - 1m')" class="file-item">12:36:02 - 71s - 1m</li>
+<li id="file-2024-08-16/12:31:47 - 46s - 1m" onclick="loadFile('2024-08-16/12:31:47 - 46s - 1m')" class="file-item">12:31:47 - 46s - 1m</li>
+<li id="file-2024-08-16/12:29:47 - 45s - 1m" onclick="loadFile('2024-08-16/12:29:47 - 45s - 1m')" class="file-item">12:29:47 - 45s - 1m</li>
 </ul>
 <li id="folder-2024-08-15" onclick="toggleFolder('2024-08-15')" class="folder-item">2024-08-15</li>
 <ul id="2024-08-15" style="display:none;">
-<li id="file-2024-08-15/11:25:08" onclick="loadFile('2024-08-15/11:25:08')" class="file-item">11:25:08</li>
-<li id="file-2024-08-15/11:22:16" onclick="loadFile('2024-08-15/11:22:16')" class="file-item">11:22:16</li>
-<li id="file-2024-08-15/11:19:42" onclick="loadFile('2024-08-15/11:19:42')" class="file-item">11:19:42</li>
-<li id="file-2024-08-15/11:17:29" onclick="loadFile('2024-08-15/11:17:29')" class="file-item">11:17:29</li>
-<li id="file-2024-08-15/11:14:48" onclick="loadFile('2024-08-15/11:14:48')" class="file-item">11:14:48</li>
-<li id="file-2024-08-15/11:12:12" onclick="loadFile('2024-08-15/11:12:12')" class="file-item">11:12:12</li>
+<li id="file-2024-08-15/11:25:08 - 48s - 1m" onclick="loadFile('2024-08-15/11:25:08 - 48s - 1m')" class="file-item">11:25:08 - 48s - 1m</li>
+<li id="file-2024-08-15/11:22:16 - 46s - 1m" onclick="loadFile('2024-08-15/11:22:16 - 46s - 1m')" class="file-item">11:22:16 - 46s - 1m</li>
+<li id="file-2024-08-15/11:19:42 - 48s - 1m" onclick="loadFile('2024-08-15/11:19:42 - 48s - 1m')" class="file-item">11:19:42 - 48s - 1m</li>
+<li id="file-2024-08-15/11:17:29 - 23s - 1m" onclick="loadFile('2024-08-15/11:17:29 - 23s - 1m')" class="file-item">11:17:29 - 23s - 1m</li>
+<li id="file-2024-08-15/11:14:48 - 44s - 1m" onclick="loadFile('2024-08-15/11:14:48 - 44s - 1m')" class="file-item">11:14:48 - 44s - 1m</li>
+<li id="file-2024-08-15/11:12:12 - 42s - 1m" onclick="loadFile('2024-08-15/11:12:12 - 42s - 1m')" class="file-item">11:12:12 - 42s - 1m</li>
 </ul>
 <li id="folder-2024-08-14" onclick="toggleFolder('2024-08-14')" class="folder-item">2024-08-14</li>
 <ul id="2024-08-14" style="display:none;">
-<li id="file-2024-08-14/17:04:23" onclick="loadFile('2024-08-14/17:04:23')" class="file-item">17:04:23</li>
-<li id="file-2024-08-14/17:00:24" onclick="loadFile('2024-08-14/17:00:24')" class="file-item">17:00:24</li>
-<li id="file-2024-08-14/16:57:18" onclick="loadFile('2024-08-14/16:57:18')" class="file-item">16:57:18</li>
-<li id="file-2024-08-14/16:53:15" onclick="loadFile('2024-08-14/16:53:15')" class="file-item">16:53:15</li>
-<li id="file-2024-08-14/16:50:22" onclick="loadFile('2024-08-14/16:50:22')" class="file-item">16:50:22</li>
-<li id="file-2024-08-14/16:45:06" onclick="loadFile('2024-08-14/16:45:06')" class="file-item">16:45:06</li>
-<li id="file-2024-08-14/16:42:17" onclick="loadFile('2024-08-14/16:42:17')" class="file-item">16:42:17</li>
-<li id="file-2024-08-14/16:38:09" onclick="loadFile('2024-08-14/16:38:09')" class="file-item">16:38:09</li>
+<li id="file-2024-08-14/17:04:23 - 56s - 1m" onclick="loadFile('2024-08-14/17:04:23 - 56s - 1m')" class="file-item">17:04:23 - 56s - 1m</li>
+<li id="file-2024-08-14/17:00:24 - 58s - 1m" onclick="loadFile('2024-08-14/17:00:24 - 58s - 1m')" class="file-item">17:00:24 - 58s - 1m</li>
+<li id="file-2024-08-14/16:57:18 - 57s - 1m" onclick="loadFile('2024-08-14/16:57:18 - 57s - 1m')" class="file-item">16:57:18 - 57s - 1m</li>
+<li id="file-2024-08-14/16:53:15 - 41s - 1m" onclick="loadFile('2024-08-14/16:53:15 - 41s - 1m')" class="file-item">16:53:15 - 41s - 1m</li>
+<li id="file-2024-08-14/16:50:22 - 41s - 1m" onclick="loadFile('2024-08-14/16:50:22 - 41s - 1m')" class="file-item">16:50:22 - 41s - 1m</li>
+<li id="file-2024-08-14/16:45:06 - 36s - 1m" onclick="loadFile('2024-08-14/16:45:06 - 36s - 1m')" class="file-item">16:45:06 - 36s - 1m</li>
+<li id="file-2024-08-14/16:42:17 - 37s - 1m" onclick="loadFile('2024-08-14/16:42:17 - 37s - 1m')" class="file-item">16:42:17 - 37s - 1m</li>
+<li id="file-2024-08-14/16:38:09 - 2s - 1m" onclick="loadFile('2024-08-14/16:38:09 - 2s - 1m')" class="file-item">16:38:09 - 2s - 1m</li>
 </ul>
 <li id="folder-2024-08-13" onclick="toggleFolder('2024-08-13')" class="folder-item">2024-08-13</li>
 <ul id="2024-08-13" style="display:none;">
-<li id="file-2024-08-13/17:08:44" onclick="loadFile('2024-08-13/17:08:44')" class="file-item">17:08:44</li>
-<li id="file-2024-08-13/16:56:02" onclick="loadFile('2024-08-13/16:56:02')" class="file-item">16:56:02</li>
-<li id="file-2024-08-13/16:54:24" onclick="loadFile('2024-08-13/16:54:24')" class="file-item">16:54:24</li>
-<li id="file-2024-08-13/16:53:47" onclick="loadFile('2024-08-13/16:53:47')" class="file-item">16:53:47</li>
-<li id="file-2024-08-13/16:48:49" onclick="loadFile('2024-08-13/16:48:49')" class="file-item">16:48:49</li>
-<li id="file-2024-08-13/16:45:48" onclick="loadFile('2024-08-13/16:45:48')" class="file-item">16:45:48</li>
-<li id="file-2024-08-13/16:42:52" onclick="loadFile('2024-08-13/16:42:52')" class="file-item">16:42:52</li>
+<li id="file-2024-08-13/17:08:44 - 41s - 1m" onclick="loadFile('2024-08-13/17:08:44 - 41s - 1m')" class="file-item">17:08:44 - 41s - 1m</li>
+<li id="file-2024-08-13/16:56:02 - 46s - 1m" onclick="loadFile('2024-08-13/16:56:02 - 46s - 1m')" class="file-item">16:56:02 - 46s - 1m</li>
+<li id="file-2024-08-13/16:54:24 - 4s - 1m" onclick="loadFile('2024-08-13/16:54:24 - 4s - 1m')" class="file-item">16:54:24 - 4s - 1m</li>
+<li id="file-2024-08-13/16:53:47 - 20s - 1m" onclick="loadFile('2024-08-13/16:53:47 - 20s - 1m')" class="file-item">16:53:47 - 20s - 1m</li>
+<li id="file-2024-08-13/16:48:49 - 23s - 1m" onclick="loadFile('2024-08-13/16:48:49 - 23s - 1m')" class="file-item">16:48:49 - 23s - 1m</li>
+<li id="file-2024-08-13/16:45:48 - 33s - 1m" onclick="loadFile('2024-08-13/16:45:48 - 33s - 1m')" class="file-item">16:45:48 - 33s - 1m</li>
+<li id="file-2024-08-13/16:42:52 - 37s - 1m" onclick="loadFile('2024-08-13/16:42:52 - 37s - 1m')" class="file-item">16:42:52 - 37s - 1m</li>
 </ul>
 <li id="folder-2024-03-06" onclick="toggleFolder('2024-03-06')" class="folder-item">2024-03-06</li>
 <ul id="2024-03-06" style="display:none;">
-<li id="file-2024-03-06/07:07:52" onclick="loadFile('2024-03-06/07:07:52')" class="file-item">07:07:52</li>
-<li id="file-2024-03-06/07:05:35" onclick="loadFile('2024-03-06/07:05:35')" class="file-item">07:05:35</li>
-<li id="file-2024-03-06/07:03:57" onclick="loadFile('2024-03-06/07:03:57')" class="file-item">07:03:57</li>
-<li id="file-2024-03-06/07:01:49" onclick="loadFile('2024-03-06/07:01:49')" class="file-item">07:01:49</li>
-<li id="file-2024-03-06/06:59:59" onclick="loadFile('2024-03-06/06:59:59')" class="file-item">06:59:59</li>
-<li id="file-2024-03-06/06:58:27" onclick="loadFile('2024-03-06/06:58:27')" class="file-item">06:58:27</li>
+<li id="file-2024-03-06/07:07:52 - 49s - 1m" onclick="loadFile('2024-03-06/07:07:52 - 49s - 1m')" class="file-item">07:07:52 - 49s - 1m</li>
+<li id="file-2024-03-06/07:05:35 - 42s - 1m" onclick="loadFile('2024-03-06/07:05:35 - 42s - 1m')" class="file-item">07:05:35 - 42s - 1m</li>
+<li id="file-2024-03-06/07:03:57 - 26s - 1m" onclick="loadFile('2024-03-06/07:03:57 - 26s - 1m')" class="file-item">07:03:57 - 26s - 1m</li>
+<li id="file-2024-03-06/07:01:49 - 33s - 1m" onclick="loadFile('2024-03-06/07:01:49 - 33s - 1m')" class="file-item">07:01:49 - 33s - 1m</li>
+<li id="file-2024-03-06/06:59:59 - 30s - 1m" onclick="loadFile('2024-03-06/06:59:59 - 30s - 1m')" class="file-item">06:59:59 - 30s - 1m</li>
+<li id="file-2024-03-06/06:58:27 - 6s - 1m" onclick="loadFile('2024-03-06/06:58:27 - 6s - 1m')" class="file-item">06:58:27 - 6s - 1m</li>
 </ul>
 <li id="folder-2024-03-05" onclick="toggleFolder('2024-03-05')" class="folder-item">2024-03-05</li>
 <ul id="2024-03-05" style="display:none;">
-<li id="file-2024-03-05/06:46:43" onclick="loadFile('2024-03-05/06:46:43')" class="file-item">06:46:43</li>
-<li id="file-2024-03-05/06:45:18" onclick="loadFile('2024-03-05/06:45:18')" class="file-item">06:45:18</li>
-<li id="file-2024-03-05/06:43:55" onclick="loadFile('2024-03-05/06:43:55')" class="file-item">06:43:55</li>
-<li id="file-2024-03-05/06:41:30" onclick="loadFile('2024-03-05/06:41:30')" class="file-item">06:41:30</li>
-<li id="file-2024-03-05/06:39:59" onclick="loadFile('2024-03-05/06:39:59')" class="file-item">06:39:59</li>
-<li id="file-2024-03-05/06:36:32" onclick="loadFile('2024-03-05/06:36:32')" class="file-item">06:36:32</li>
-<li id="file-2024-03-05/06:34:30" onclick="loadFile('2024-03-05/06:34:30')" class="file-item">06:34:30</li>
-<li id="file-2024-03-05/06:33:32" onclick="loadFile('2024-03-05/06:33:32')" class="file-item">06:33:32</li>
-<li id="file-2024-03-05/06:33:21" onclick="loadFile('2024-03-05/06:33:21')" class="file-item">06:33:21</li>
-<li id="file-2024-03-05/06:32:01" onclick="loadFile('2024-03-05/06:32:01')" class="file-item">06:32:01</li>
-<li id="file-2024-03-05/06:31:52" onclick="loadFile('2024-03-05/06:31:52')" class="file-item">06:31:52</li>
-<li id="file-2024-03-05/06:31:01" onclick="loadFile('2024-03-05/06:31:01')" class="file-item">06:31:01</li>
-<li id="file-2024-03-05/06:29:38" onclick="loadFile('2024-03-05/06:29:38')" class="file-item">06:29:38</li>
+<li id="file-2024-03-05/06:46:43 - 12s - 1m" onclick="loadFile('2024-03-05/06:46:43 - 12s - 1m')" class="file-item">06:46:43 - 12s - 1m</li>
+<li id="file-2024-03-05/06:45:18 - 16s - 1m" onclick="loadFile('2024-03-05/06:45:18 - 16s - 1m')" class="file-item">06:45:18 - 16s - 1m</li>
+<li id="file-2024-03-05/06:43:55 - 13s - 1m" onclick="loadFile('2024-03-05/06:43:55 - 13s - 1m')" class="file-item">06:43:55 - 13s - 1m</li>
+<li id="file-2024-03-05/06:41:30 - 21s - 1m" onclick="loadFile('2024-03-05/06:41:30 - 21s - 1m')" class="file-item">06:41:30 - 21s - 1m</li>
+<li id="file-2024-03-05/06:39:59 - 10s - 1m" onclick="loadFile('2024-03-05/06:39:59 - 10s - 1m')" class="file-item">06:39:59 - 10s - 1m</li>
+<li id="file-2024-03-05/06:36:32 - 9s - 1m" onclick="loadFile('2024-03-05/06:36:32 - 9s - 1m')" class="file-item">06:36:32 - 9s - 1m</li>
+<li id="file-2024-03-05/06:34:30 - 16s - 1m" onclick="loadFile('2024-03-05/06:34:30 - 16s - 1m')" class="file-item">06:34:30 - 16s - 1m</li>
+<li id="file-2024-03-05/06:33:32 - 2s - 1m" onclick="loadFile('2024-03-05/06:33:32 - 2s - 1m')" class="file-item">06:33:32 - 2s - 1m</li>
+<li id="file-2024-03-05/06:33:21 - 7s - 1m" onclick="loadFile('2024-03-05/06:33:21 - 7s - 1m')" class="file-item">06:33:21 - 7s - 1m</li>
+<li id="file-2024-03-05/06:32:01 - 4s - 1m" onclick="loadFile('2024-03-05/06:32:01 - 4s - 1m')" class="file-item">06:32:01 - 4s - 1m</li>
+<li id="file-2024-03-05/06:31:52 - 4s - 1m" onclick="loadFile('2024-03-05/06:31:52 - 4s - 1m')" class="file-item">06:31:52 - 4s - 1m</li>
+<li id="file-2024-03-05/06:31:01 - 8s - 1m" onclick="loadFile('2024-03-05/06:31:01 - 8s - 1m')" class="file-item">06:31:01 - 8s - 1m</li>
+<li id="file-2024-03-05/06:29:38 - 11s - 1m" onclick="loadFile('2024-03-05/06:29:38 - 11s - 1m')" class="file-item">06:29:38 - 11s - 1m</li>
 </ul>
         </ul>
     </div>
     <div id="right-pane">
         <iframe id="file-viewer" src=""></iframe>
     </div>
-
-    <script>
-        let lastExpanded = null;
-        let selectedFolder = null;
-        let selectedFile = null;
-
-        function checkOrientation() {
-          const banner = document.getElementById('orientationBanner');
-          const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-          const onMobile = /android/i.test(userAgent) ||
-             /iPhone|iPad|iPod/i.test(userAgent) ||
-             /windows phone/i.test(userAgent) ||
-             /mobile/i.test(userAgent);
-
-            if (onMobile){
-              // on mobile the window dimensions are usually fixed, but we can ask for landscape mode
-              if (window.innerWidth < window.innerHeight) {
-                // show the banner when in landscape mode
-                banner.innerText = "This page looks better in landscape mode";
-                banner.style.display = 'block';
-              }else{
-                // hide the banner otherwise
-                banner.style.display = 'none';
-              }
-            } else if (window.innerWidth < 600) {
-              // on desktop, show the banner if below some min width
-              banner.innerText = "This page looks better on wider screens";
-              banner.style.display = 'block';
-            }else{
-              // otherwise hide it
-              banner.style.display = 'none';
-            }
-        }
-
-        function toggleFolder(folder) {
-            const folderElement = document.getElementById(folder);
-            if (folderElement.style.display === "none") {
-                if (lastExpanded && lastExpanded !== folder) {
-                    document.getElementById(lastExpanded).style.display = "none";
-                }
-                folderElement.style.display = "block";
-                lastExpanded = folder;
-            } else {
-                folderElement.style.display = "none";
-            }
-
-            // Bold the selected folder
-            if (selectedFolder) {
-                document.getElementById('folder-' + selectedFolder).classList.remove('selected');
-            }
-            selectedFolder = folder;
-            document.getElementById('folder-' + folder).classList.add('selected');
-
-             // Automatically click the first file under the folder, if available
-            const firstFile = folderElement.querySelector('li');
-            if (firstFile) {
-                firstFile.click();  // Trigger a click on the first file to load it
-            }
-        }
-
-        function loadFile(file) {
-            const iframe = document.getElementById('file-viewer');
-            iframe.src = file + '.html';  // Ensure we append '.html' to the file path
-
-            // Bold the selected file
-            if (selectedFile) {
-                document.getElementById('file-' + selectedFile).classList.remove('selected');
-            }
-            selectedFile = file;
-            document.getElementById('file-' + selectedFile).classList.add('selected');
-
-            // Store the selected file in a cookie
-            document.cookie = `selectedFile=${file};path=/;max-age=31536000;samesite=lax`;  // Store for 1 year
-        }
-
-        function getCookie(name) {
-            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            return match ? match[2] : null;
-        }
-
-        // Check orientation and bother user
-        checkOrientation();
-
-        // Automatically load a file on page load
-        window.onload = function() {            
-            restoreFolder = '2024-11-03';
-            restoreFile = '10:42:34';
-
-            const selectedFileFromCookie = getCookie('selectedFile');
-
-            if (selectedFileFromCookie) {
-                // Extract folder and file from the cookie (expecting "folder/file" format)
-                [restoreFolder, restoreFile] = selectedFileFromCookie.split('/');
-            }
-
-            // Expand the specific folder and load the specific file
-            const folderElement = document.getElementById('folder-' + restoreFolder);
-            if (folderElement) {
-                folderElement.click();  // Expand the folder
-                const fileElement = document.getElementById('file-' + restoreFolder + '/' + restoreFile);
-                if (fileElement) {
-                    fileElement.click();  // Load the file into the iframe
-                }
-            }
-        };
-
-      window.addEventListener('resize', function() {
-        checkOrientation();
-      });
-
-    </script>
 </body>
 </html>
