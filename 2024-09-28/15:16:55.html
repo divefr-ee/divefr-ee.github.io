@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Miwok</title>
+    <script src="/plotly-basic.min.js"></script>
+    <style>
+        html {
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+        }
+        body {
+          height: 100%;
+          font-family: Arial, sans-serif;
+          color: #555;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        #divePlot {
+          width: 100%;
+        }
+        #mapPane {
+          width: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    
+    <div id="divePlot"></div>
+    
+    <br/>
+
+    <div id="mapPane">
+      <center>
+        <iframe
+            id="mapIframe"
+            width="70%"
+            height="200px"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1%2C-0.1%2C0.1%2C0.1&marker=0,0">
+        </iframe>
+      </center>
+    </div>
+    
+    <script>
+      const title = '';
+      const xlabel = 'time (s)';
+      const ylabel1 = 'depth (m)';
+      const ylabel2 = 'rate (m/s)';
+      const color1 = 'royalblue';
+      const color2 = 'darkgrey';
+      const dataset = {
+        date: "2024-09-28",
+        time: "15:16:55",
+        lat: 38.07403,
+        lon: -122.578614,
+        locname: "Miwok",
+        t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60],
+        depth: [-1.39,-1.8,-1.72,-2.38,-2.95,-3.3,-4.09,-4.21,-4.23,-4.23,-4.13,-3.98,-3.89,-3.94,-3.93,-3.9,-3.84,-3.91,-3.93,-3.77,-3.77,-3.87,-4.04,-4.06,-3.8,-3.75,-3.64,-3.67,-3.27,-2.4,-1.4],
+        temperature: ["27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00","28.00"],
+        vertrates: [-0.205,-0.1315,-0.19105,-0.219235,-0.2059645,-0.26267515,-0.201872605,-0.1443108235,-0.10101757645,-0.0557123035149999,-0.0164986124605,0.00195097127765001,-0.00613432010564497,-0.00279402407395151,0.00254418314823398,0.0107809282037638,-0.00295335025736539,-0.00506734518015577,0.020452858373891,0.0143170008617237,-0.00497809939679343,-0.0289846695777554,-0.0232892687044287,0.0226975119068999,0.0233882583348299,0.0328717808343809,0.0185102465840667,0.0729571726088466,0.181570020826193,0.277099014578335,0.343969310204834]
+      };
+      function updatePlot() {
+        var colors = dataset.vertrates.map(rate => {
+          if (rate < 0) {
+            return 'darkgrey';
+          } else return 'lightgrey';
+        });
+
+        Plotly.react('divePlot', [
+          {
+            x: dataset.t,
+            y: dataset.depth,
+            mode: 'lines',
+            type: 'scatter',
+            name: ylabel1,
+            yaxis: 'y',
+            line: { color: color1 },
+            zorder: 2
+          },
+          {
+            x: dataset.t,
+            y: dataset.vertrates,
+            mode: 'lines',
+            type: 'bar',
+            name: ylabel2,
+            yaxis: 'y2',
+            marker: { color: colors },
+            line: { color: color2 },
+            zorder: 1
+          }
+        ], {
+          title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
+          showlegend: false,
+          xaxis: { title: xlabel },
+          yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
+          yaxis2: {
+            title: ylabel2,
+            overlaying: 'y',
+            side: 'right',
+            titlefont: { color: color2 },
+            tickfont: { color: color2 },
+            showgrid: false // Optional: Hide the grid for the right Y-axis
+          }
+        });
+
+        // Update the iframe URL with new coordinates and bbox
+        const lat = dataset.lat;
+        const lon = dataset.lon;
+        if (lat && lon ){
+          const newBBox = `${lon - 0.03}%2C${lat - 0.03}%2C${lon + 0.03}%2C${lat + 0.03}`;
+          const newMarker = `${lat},${lon}`;
+          const newIframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${newBBox}&marker=${newMarker}`;
+          document.getElementById('mapIframe').src = newIframeSrc;
+        }else{
+          document.getElementById('mapIframe').src = ``;
+        }
+      }
+
+      // Initial plot with the first dataset
+      updatePlot();
+
+      // Resize plot on window resize
+      window.addEventListener('resize', function() {
+        checkOrientation();
+        Plotly.Plots.resize(document.getElementById('divePlot'));
+      });
+    </script>
+  </body>
+</html>

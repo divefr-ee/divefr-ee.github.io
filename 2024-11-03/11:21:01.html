@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Beryessa Dive Studio</title>
+    <script src="/plotly-basic.min.js"></script>
+    <style>
+        html {
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+        }
+        body {
+          height: 100%;
+          font-family: Arial, sans-serif;
+          color: #555;
+          overflow-y: auto;
+          overflow-x: hidden;
+        }
+        #divePlot {
+          width: 100%;
+        }
+        #mapPane {
+          width: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    
+    <div id="divePlot"></div>
+    
+    <br/>
+
+    <div id="mapPane">
+      <center>
+        <iframe
+            id="mapIframe"
+            width="70%"
+            height="200px"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.1%2C-0.1%2C0.1%2C0.1&marker=0,0">
+        </iframe>
+      </center>
+    </div>
+    
+    <script>
+      const title = '';
+      const xlabel = 'time (s)';
+      const ylabel1 = 'depth (m)';
+      const ylabel2 = 'rate (m/s)';
+      const color1 = 'royalblue';
+      const color2 = 'darkgrey';
+      const dataset = {
+        date: "2024-11-03",
+        time: "11:21:01",
+        lat: 38.510107,
+        lon: -122.114128,
+        locname: "Beryessa Dive Studio",
+        t: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66],
+        depth: [-1.28,-0.9,-1.8,-2.27,-2.82,-3.25,-3.58,-3.98,-4.39,-4.96,-5.31,-5.36,-5.34,-5.78,-6.03,-6.48,-7.08,-7.7,-8.32,-8.94,-9.58,-10.23,-10.88,-11.48,-12.19,-12.99,-13.82,-14.62,-15.47,-16.38,-17.3,-18.26,-19.17,-20.1,-21.08,-21.71,-22.05,-22.17,-21.54,-21.16,-20.54,-19.12,-18.51,-17.55,-16.57,-15.92,-14.6,-13.95,-12.75,-11.6,-10.97,-9.84,-8.51,-7.83,-6.93,-5.51,-4.88,-3.58,-2.34,-1.61,-0.55,-0.01,-0.02,-0.01,-0.01,-0.02],
+        temperature: ["19.60","19.60","19.60","19.50","19.50","19.50","19.50","19.50","19.50","19.50","19.40","19.40","19.40","19.40","19.40","19.40","19.40","19.40","19.40","19.40","19.40","19.40","19.30","19.30","19.30","19.30","19.30","19.30","19.30","19.30","19.30","19.20","19.20","19.20","18.90","18.60","18.40","18.20","18.10","17.90","17.60","17.50","17.60","17.80","18.10","18.20","18.30","18.40","18.50","18.50","18.60","18.60","18.70","18.70","18.70","18.70","18.70","18.80","18.80","18.80","18.80","18.80","18.80","18.80","18.80","18.80"],
+        vertrates: [0.38,-0.00400000000000006,-0.1438,-0.26566,-0.314962,-0.3194734,-0.34363138,-0.363541966,-0.4254793762,-0.40283556334,-0.296984894338,-0.2018894260366,-0.27332259822562,-0.266325818757934,-0.321428073130554,-0.404999651191388,-0.469499755833971,-0.51464982908378,-0.546254880358646,-0.574378416251052,-0.597064891375737,-0.612945423963016,-0.609061796774111,-0.639343257741877,-0.687540280419314,-0.73027819629352,-0.751194737405463,-0.780836316183825,-0.819585421328677,-0.849709794930074,-0.882796856451052,-0.890957799515737,-0.902670459661015,-0.92586932176271,-0.837108525233898,-0.687975967663728,-0.51758317736461,-0.173308224155226,-0.00731575690865867,0.180878970163939,0.552615279114757,0.56983069538033,0.686881486766231,0.774817040736362,0.737371928515453,0.912160349960817,0.833512244972572,0.9434585714808,1.00542100003656,0.892794700025592,0.963956290017914,1.07376940301254,0.955638582108778,0.938947007476145,1.0832629052333,0.947284033663311,1.05309882356432,1.10916917649502,0.995418423546515,1.01479289648256,0.872355027537792,0.607648519276455,0.428353963493518,0.299847774445463,0.206893442111824,0.141825409478277]
+      };
+      function updatePlot() {
+        var colors = dataset.vertrates.map(rate => {
+          if (rate < 0) {
+            return 'darkgrey';
+          } else return 'lightgrey';
+        });
+
+        Plotly.react('divePlot', [
+          {
+            x: dataset.t,
+            y: dataset.depth,
+            mode: 'lines',
+            type: 'scatter',
+            name: ylabel1,
+            yaxis: 'y',
+            line: { color: color1 },
+            zorder: 2
+          },
+          {
+            x: dataset.t,
+            y: dataset.vertrates,
+            mode: 'lines',
+            type: 'bar',
+            name: ylabel2,
+            yaxis: 'y2',
+            marker: { color: colors },
+            line: { color: color2 },
+            zorder: 1
+          }
+        ], {
+          title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
+          showlegend: false,
+          xaxis: { title: xlabel },
+          yaxis: { title: ylabel1, side: 'left', titlefont: { color: color1 }, tickfont: { color: color1 } },
+          yaxis2: {
+            title: ylabel2,
+            overlaying: 'y',
+            side: 'right',
+            titlefont: { color: color2 },
+            tickfont: { color: color2 },
+            showgrid: false // Optional: Hide the grid for the right Y-axis
+          }
+        });
+
+        // Update the iframe URL with new coordinates and bbox
+        const lat = dataset.lat;
+        const lon = dataset.lon;
+        if (lat && lon ){
+          const newBBox = `${lon - 0.03}%2C${lat - 0.03}%2C${lon + 0.03}%2C${lat + 0.03}`;
+          const newMarker = `${lat},${lon}`;
+          const newIframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${newBBox}&marker=${newMarker}`;
+          document.getElementById('mapIframe').src = newIframeSrc;
+        }else{
+          document.getElementById('mapIframe').src = ``;
+        }
+      }
+
+      // Initial plot with the first dataset
+      updatePlot();
+
+      // Resize plot on window resize
+      window.addEventListener('resize', function() {
+        checkOrientation();
+        Plotly.Plots.resize(document.getElementById('divePlot'));
+      });
+    </script>
+  </body>
+</html>
