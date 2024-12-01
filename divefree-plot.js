@@ -67,7 +67,7 @@ function makePlot(dataset){
     zorder: 6
   }
   ], {
-    title: dataset.date + " // " + dataset.time + " // " + dataset.locname,
+    title: "<b>" + dataset.date + " " + dataset.time + "</b><br><i>" + dataset.locname + "</i><br>" + dataset.divetime + " seconds :: " + dataset.maxdepth + " meters<br>&nbsp;",
     showlegend: false,
     xaxis: { 
       title: xlabel,
