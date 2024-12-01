@@ -12,7 +12,7 @@ function checkOrientation() {
 
   if (onMobile){
       // on mobile the window dimensions are usually fixed, but we can ask for landscape mode
-      if (window.innerWidth < window.innerHeight) {
+      if (window.innerWidth < 700 && window.innerWidth < window.innerHeight) {
         // show the banner when in landscape mode
         banner.innerText = "This page looks better in landscape mode";
         banner.style.display = 'block';
@@ -20,7 +20,7 @@ function checkOrientation() {
         // hide the banner otherwise
         banner.style.display = 'none';
     }
-} else if (window.innerWidth < 600) {
+} else if (window.innerWidth < 700) {
       // on desktop, show the banner if below some min width
   banner.innerText = "This page looks better on wider screens";
   banner.style.display = 'block';
