@@ -59,7 +59,7 @@
       const ylabel1 = 'depth (m)';
       const ylabel2 = 'rate (m/s)';
       const color1 = 'royalblue';
-      const color2 = 'darkgrey';
+      const color2 = 'grey';
       const dataset = {
         date: "2024-08-13",
         time: "16:53:47",
@@ -97,8 +97,8 @@
 
         var colors = dataset.vertrates.map(rate => {
           if (rate < 0) {
-            return 'darkgrey';
-          } else return 'lightgrey';
+            return 'dark'+color2;
+          } else return 'light'+color2;
         });
 
         Plotly.react('divePlot', [
@@ -137,7 +137,7 @@
             side: 'right',
             titlefont: { color: color2 },
             tickfont: { color: color2 },
-            showgrid: false // Optional: Hide the grid for the right Y-axis
+            showgrid: false 
           }
         });
 
