@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Mesa Delta Pool</title>
+    <script src="../plotly-basic.min.js?v=0.1.1"></script>
+    <script src="../divefree-plot.js?v=0.1.1"></script>
+    <link rel="stylesheet" href="/divefree-plot.css">
+</head>
+  <body>
+
+    <div id="dive-plot" class="dive-plot"></div>
+
+    <br>
+
+    <div id="map-pane" class="map-pane">
+      <center>
+        <!-- yeah, these tags are obsolete but CSS on iframes is still broken and this works -->
+        <iframe
+            id="map-iframe"
+            class="map-iframe"
+            width="70%"
+            height="200"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-111.858257%2C33.389655%2C-111.798257%2C33.449655&marker=33.419655,-111.828257">
+        </iframe>
+      </center>
+    </div>
+    <div id="footer" class="footer">
+      <center>
+        <a href="/2024-03-06/07:07:52_-_49s_-_2m.html" target="_blank">permalink</a>
+      </center>
+    </div>
+
+    <script>
+      makePlot({
+        date: "2024-03-06",
+        time: "07:07:52",
+        lat: 33.419655,
+        lon: -111.828257,
+        locname: "Mesa Delta Pool",
+        t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48],
+        maxdepth: 1.8,
+        divetime: 49,
+        height: ["-1.23","-1.25","-1.28","-1.36","-1.38","-1.43","-1.49","-1.55","-1.64","-1.69","-1.76","-1.77","-1.74","-1.75","-1.68","-1.62","-1.78","-1.76","-1.73","-1.55","-1.51","-1.37","-1.25","-1.22","-0.96"],
+        zuluepoch: [1709737672,1709737674,1709737676,1709737678,1709737680,1709737682,1709737684,1709737686,1709737688,1709737690,1709737692,1709737694,1709737696,1709737698,1709737700,1709737702,1709737704,1709737706,1709737708,1709737710,1709737712,1709737714,1709737716,1709737718,1709737720],
+        temperature: ["27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00","27.00"],
+        vertrate: ["-0.01","-0.01","-0.03","-0.01","-0.02","-0.03","-0.03","-0.04","-0.03","-0.03","-0.01","0.01","-0.00","0.03","0.03","-0.06","-0.00","0.01","0.07","0.03","0.06","0.06","0.02","0.11","0.13"]
+      });
+    </script>
+  </body>
+</html>

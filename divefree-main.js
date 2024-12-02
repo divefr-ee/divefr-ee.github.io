@@ -89,7 +89,7 @@ function getCookie(name) {
 // Automatically load a file on page load
 window.onload = function() {
   let restoreFolder = "2024-11-03";
-  let restoreFile = "10:42:34 - 58s - 20m";
+  let restoreFile = "11:21:01 - 62s - 22m";
 
   const selectedFileFromCookie = getCookie("selectedFile");
 
