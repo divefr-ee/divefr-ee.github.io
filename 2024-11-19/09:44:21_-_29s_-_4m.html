@@ -11,25 +11,24 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>divefree: Kealakekua Bay</title>
-    <script src="../plotly-basic.min.js?v=0.1.0"></script>
-    <script src="../divefree-plot.js?v=0.1.0"></script>
+    <script src="../plotly-basic.min.js?v=0.1.1"></script>
+    <script src="../divefree-plot.js?v=0.1.1"></script>
     <link rel="stylesheet" href="/divefree-plot.css">
 </head>
   <body>
-    
+
     <div id="dive-plot" class="dive-plot"></div>
-    
-    <br/>
+
+    <br>
 
     <div id="map-pane" class="map-pane">
       <center>
+        <!-- yeah, these tags are obsolete but CSS on iframes is still broken and this works -->
         <iframe
             id="map-iframe"
             class="map-iframe"
             width="70%"
-            height="200px"
-            id="map-iframe"
-            class="map-iframe"
+            height="200"
             loading="lazy"
             frameborder="0"
             scrolling="no"
@@ -42,7 +41,7 @@
         <a href="/2024-11-19/09:44:21_-_29s_-_4m.html" target="_blank">permalink</a>
       </center>
     </div>
-    
+
     <script>
       makePlot({
         date: "2024-11-19",
