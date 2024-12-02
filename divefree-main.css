@@ -4,50 +4,56 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
-#orientationBanner {
+
+.orientation-banner {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #ffcc00;
+  background-color: #fc0;
   color: black;
   text-align: center;
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   font-size: 14px;
   z-index: 1000;
 }
-#left-pane {
-    display: inline-block;
-    height: 100vh;
-    border-right: 2px solid #ccc;
-    padding-top: 10px;
-    padding-right: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
-    white-space: nowrap;
+
+.left-pane {
+  display: inline-block;
+  height: 100vh;
+  border-right: 2px solid #ccc;
+  padding-top: 10px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  overflow: auto hidden;
+  white-space: nowrap;
 }
-#right-pane {
-    height: 100vh;
-    flex-grow: 1;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    overflow-x: hidden;
+
+.right-pane {
+  height: 100vh;
+  flex-grow: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: auto hidden;
 }
+
 ul {
-    list-style-type: none;
-    padding-left: 20px;
+  list-style-type: none;
+  padding-left: 20px;
 }
+
 li {
-    cursor: pointer;
+  cursor: pointer;
 }
-li.selected {
-    font-weight: bold;
+
+.selected {
+  font-weight: bold;
 }
+
 iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
