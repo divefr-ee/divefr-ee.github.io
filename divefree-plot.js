@@ -22,15 +22,19 @@ function makePlot(dataset){
 
   // Calculate the time difference (dt) between the first two timestamps
   let dt = dataset.t[1] - dataset.t[0];
-
-  // Calculate the number of samples needed to cover 5 seconds
   let tickInterval = Math.round(5 / dt);
-  let tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
-  let tickText = tickVals;
+  let tickVals = null;
+  let tickText = null;
+  let colots = null;
 
   dataset.t = dataset.t.map(formatTime);
 
-  let colors = dataset.vertrate.map(rate => {
+  // Calculate the number of samples needed to cover 5 seconds
+  tickVals = dataset.t.filter((time, index) => index % tickInterval === 0);
+  tickText = tickVals;
+
+
+  colors = dataset.vertrate.map(rate => {
     if (rate < 0) {
       return "dark"+color2;
     } else return "light"+color2;
