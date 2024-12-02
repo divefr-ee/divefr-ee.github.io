@@ -40,7 +40,7 @@ function makePlot(dataset){
     } else return "light"+color2;
   });
 
-  Plotly.react("divePlot", [
+  Plotly.react("dive-plot", [
     {
       x: dataset.t,
       y: dataset.height,
@@ -97,5 +97,5 @@ function makePlot(dataset){
 }
 
 window.addEventListener("resize", function() {
-  Plotly.Plots.resize(document.getElementById("divePlot"));
+  Plotly.Plots.resize(document.getElementById("dive-plot"));
 });

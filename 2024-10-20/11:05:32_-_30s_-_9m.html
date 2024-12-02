@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Beryessa Dive Studio</title>
+    <script src="../plotly-basic.min.js"></script>
+    <script src="../divefree-plot.js"></script>
+    <link rel="stylesheet" href="/divefree-plot.css">
+</head>
+  <body>
+    
+    <div id="dive-plot" class="dive-plot"></div>
+    
+    <br/>
+
+    <div id="map-pane" class="map-pane">
+      <center>
+        <iframe
+            id="map-iframe"
+            class="map-iframe"
+            width="70%"
+            height="200px"
+            id="map-iframe"
+            class="map-iframe"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.144128%2C38.480107%2C-122.084128%2C38.540107&marker=38.510107,-122.114128">
+        </iframe>
+      </center>
+    </div>
+    <div id="footer" class="footer">
+      <center>
+        <a href="/2024-10-20/11:05:32_-_30s_-_9m.html" target="_blank">permalink</a>
+      </center>
+    </div>
+    
+    <script>
+      makePlot({
+        date: "2024-10-20",
+        time: "11:05:32",
+        lat: 38.510107,
+        lon: -122.114128,
+        locname: "Beryessa Dive Studio",
+        t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30],
+        maxdepth: 9,
+        divetime: 30,
+        height: ["-1.68","-2.05","-3.00","-3.87","-4.96","-6.20","-7.76","-9.32","-9.62","-9.57","-8.86","-7.80","-5.85","-4.43","-2.79","-0.61"],
+        zuluepoch: [1729447532,1729447534,1729447536,1729447538,1729447540,1729447542,1729447544,1729447546,1729447548,1729447550,1729447552,1729447554,1729447556,1729447558,1729447560,1729447562],
+        temperature: ["21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00","21.00"],
+        vertrate: ["-0.18","-0.42","-0.43","-0.52","-0.60","-0.74","-0.77","-0.27","-0.03","0.28","0.48","0.88","0.74","0.80","1.03","1.08"]
+      });
+    </script>
+  </body>
+</html>

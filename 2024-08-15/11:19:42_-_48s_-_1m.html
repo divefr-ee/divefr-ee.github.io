@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Kirkwood</title>
+    <script src="../plotly-basic.min.js"></script>
+    <script src="../divefree-plot.js"></script>
+    <link rel="stylesheet" href="/divefree-plot.css">
+</head>
+  <body>
+    
+    <div id="dive-plot" class="dive-plot"></div>
+    
+    <br/>
+
+    <div id="map-pane" class="map-pane">
+      <center>
+        <iframe
+            id="map-iframe"
+            class="map-iframe"
+            width="70%"
+            height="200px"
+            id="map-iframe"
+            class="map-iframe"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-120.100333%2C38.671664%2C-120.040333%2C38.731664&marker=38.701664,-120.070333">
+        </iframe>
+      </center>
+    </div>
+    <div id="footer" class="footer">
+      <center>
+        <a href="/2024-08-15/11:19:42_-_48s_-_1m.html" target="_blank">permalink</a>
+      </center>
+    </div>
+    
+    <script>
+      makePlot({
+        date: "2024-08-15",
+        time: "11:19:42",
+        lat: 38.701664,
+        lon: -120.070333,
+        locname: "Kirkwood",
+        t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48],
+        maxdepth: 1,
+        divetime: 48,
+        height: ["-1.22","-1.29","-1.32","-1.32","-1.33","-1.32","-1.31","-1.32","-1.33","-1.33","-1.33","-1.32","-1.35","-1.33","-1.35","-1.34","-1.36","-1.37","-1.35","-1.34","-1.33","-1.34","-1.33","-1.28","-0.82"],
+        zuluepoch: [1723745982,1723745984,1723745986,1723745988,1723745990,1723745992,1723745994,1723745996,1723745998,1723746000,1723746002,1723746004,1723746006,1723746008,1723746010,1723746012,1723746014,1723746016,1723746018,1723746020,1723746022,1723746024,1723746026,1723746028,1723746030],
+        temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"],
+        vertrate: ["-0.04","-0.02","-0.00","-0.00","0.00","0.00","-0.00","-0.00","-0.00","-0.00","0.00","-0.01","0.01","-0.01","0.00","-0.01","-0.01","0.01","0.01","0.01","-0.00","0.00","0.02","0.19","0.22"]
+      });
+    </script>
+  </body>
+</html>

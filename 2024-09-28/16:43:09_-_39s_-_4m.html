@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Miwok</title>
+    <script src="../plotly-basic.min.js"></script>
+    <script src="../divefree-plot.js"></script>
+    <link rel="stylesheet" href="/divefree-plot.css">
+</head>
+  <body>
+    
+    <div id="dive-plot" class="dive-plot"></div>
+    
+    <br/>
+
+    <div id="map-pane" class="map-pane">
+      <center>
+        <iframe
+            id="map-iframe"
+            class="map-iframe"
+            width="70%"
+            height="200px"
+            id="map-iframe"
+            class="map-iframe"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.608614%2C38.04403%2C-122.548614%2C38.10403&marker=38.07403,-122.578614">
+        </iframe>
+      </center>
+    </div>
+    <div id="footer" class="footer">
+      <center>
+        <a href="/2024-09-28/16:43:09_-_39s_-_4m.html" target="_blank">permalink</a>
+      </center>
+    </div>
+    
+    <script>
+      makePlot({
+        date: "2024-09-28",
+        time: "16:43:09",
+        lat: 38.07403,
+        lon: -122.578614,
+        locname: "Miwok",
+        t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38],
+        maxdepth: 4,
+        divetime: 39,
+        height: ["-1.42","-1.29","-1.67","-2.18","-3.01","-3.39","-3.97","-4.22","-4.51","-4.17","-3.60","-3.49","-3.59","-3.33","-3.25","-3.36","-3.33","-3.17","-2.66","-1.67"],
+        zuluepoch: [1727566989,1727566991,1727566993,1727566995,1727566997,1727566999,1727567001,1727567003,1727567005,1727567007,1727567009,1727567011,1727567013,1727567015,1727567017,1727567019,1727567021,1727567023,1727567025,1727567027],
+        temperature: ["29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00","29.00"],
+        vertrate: ["0.06","-0.14","-0.23","-0.38","-0.23","-0.28","-0.16","-0.15","0.11","0.25","0.09","-0.02","0.10","0.05","-0.03","0.01","0.07","0.22","0.44","0.48"]
+      });
+    </script>
+  </body>
+</html>

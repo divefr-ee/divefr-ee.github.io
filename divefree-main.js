@@ -1,6 +1,7 @@
 let lastExpanded = null;
 let selectedFolder = null;
 let selectedFile = null;
+let ignoreFolderClick = null;
 
 function checkOrientation() {
   const banner = document.getElementById("orientation-banner");
@@ -30,28 +31,36 @@ function checkOrientation() {
 }
 
 function toggleFolder(folder) {
-  const folderElement = document.getElementById(folder);
-  if (folderElement.style.display === "none") {
-    if (lastExpanded && lastExpanded !== folder) {
-      document.getElementById(lastExpanded).style.display = "none";
-    }
-    folderElement.style.display = "block";
-    lastExpanded = folder;
+  // the file <li> is embedded under the folder <ul>
+  // so clicking a file also clicks the folder and we want to ignore that
+  if (ignoreFolderClick) {
+    // reset flag
+    ignoreFolderClick = null;
   } else {
-    folderElement.style.display = "none";
-  }
+    const folderElement = document.getElementById(folder);
+    if (folderElement.style.display === "none") {
+      if (lastExpanded && lastExpanded !== folder) {
+        document.getElementById(lastExpanded).style.display = "none";
+      }
+      folderElement.style.display = "block";
+      lastExpanded = folder;
+    } else {
+      folderElement.style.display = "none";
+    }
 
-  // Bold the selected folder
-  if (selectedFolder) {
-    document.getElementById("folder-" + selectedFolder).classList.remove("selected");
-  }
-  selectedFolder = folder;
-  document.getElementById("folder-" + folder).classList.add("selected");
+    // Bold the selected folder label
+    if (selectedFolder) {
+      document.getElementById("folder-" + selectedFolder + "-label").classList.remove("selected");
 
-  // Automatically click the first file under the folder, if available
-  const firstFile = folderElement.querySelector("li");
-  if (firstFile) {
-    firstFile.click();  // Trigger a click on the first file to load it
+    }
+    selectedFolder = folder;
+    document.getElementById("folder-" + folder + "-label").classList.add("selected");
+
+    // Automatically click the first file under the folder, if available
+    const firstFile = folderElement.querySelector("li");
+    if (firstFile) {
+      firstFile.click();  // Trigger a click on the first file to load it
+    }
   }
 }
 
@@ -65,6 +74,8 @@ function loadFile(file) {
   }
   selectedFile = file;
   document.getElementById("file-" + selectedFile).classList.add("selected");
+
+  ignoreFolderClick = 1;
 
   // Store the selected file in a cookie
   document.cookie = `selectedFile=${file};path=/;max-age=31536000;samesite=lax`;  // Store for 1 year

@@ -26,16 +26,16 @@ a:hover {
   text-decoration: none;
 }
 
-#divePlot {
+.dive-plot {
   width: 100%;
 }
 
-#mapPane {
+.map-pane {
   text-align: center;
   width: 100%;
 }
 
-#footer {
+.footer {
   margin-top: 2%;
   text-align: center;
   font-size: 80%;

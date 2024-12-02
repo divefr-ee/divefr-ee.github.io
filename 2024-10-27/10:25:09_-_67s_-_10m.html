@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/apple-touch-icon-512x512.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divefree: Beryessa Dive Studio</title>
+    <script src="../plotly-basic.min.js"></script>
+    <script src="../divefree-plot.js"></script>
+    <link rel="stylesheet" href="/divefree-plot.css">
+</head>
+  <body>
+    
+    <div id="dive-plot" class="dive-plot"></div>
+    
+    <br/>
+
+    <div id="map-pane" class="map-pane">
+      <center>
+        <iframe
+            id="map-iframe"
+            class="map-iframe"
+            width="70%"
+            height="200px"
+            id="map-iframe"
+            class="map-iframe"
+            loading="lazy"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-122.144128%2C38.480107%2C-122.084128%2C38.540107&marker=38.510107,-122.114128">
+        </iframe>
+      </center>
+    </div>
+    <div id="footer" class="footer">
+      <center>
+        <a href="/2024-10-27/10:25:09_-_67s_-_10m.html" target="_blank">permalink</a>
+      </center>
+    </div>
+    
+    <script>
+      makePlot({
+        date: "2024-10-27",
+        time: "10:25:09",
+        lat: 38.510107,
+        lon: -122.114128,
+        locname: "Beryessa Dive Studio",
+        t: [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66],
+        maxdepth: 10,
+        divetime: 67,
+        height: ["-1.35","-2.38","-3.19","-3.86","-4.67","-5.55","-6.23","-7.28","-8.64","-9.24","-10.22","-10.78","-10.49","-10.13","-9.69","-9.21","-8.73","-8.66","-8.54","-7.99","-7.13","-6.41","-5.71","-5.57","-5.59","-5.72","-5.43","-5.26","-5.23","-5.04","-4.32","-3.28","-2.29","-1.10"],
+        zuluepoch: [1730049909,1730049911,1730049913,1730049915,1730049917,1730049919,1730049921,1730049923,1730049925,1730049927,1730049929,1730049931,1730049933,1730049935,1730049937,1730049939,1730049941,1730049943,1730049945,1730049947,1730049949,1730049951,1730049953,1730049955,1730049957,1730049959,1730049961,1730049963,1730049965,1730049967,1730049969,1730049971,1730049973,1730049975],
+        temperature: ["20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00","20.00"],
+        vertrate: ["-0.51","-0.43","-0.35","-0.39","-0.43","-0.36","-0.49","-0.64","-0.37","-0.47","-0.32","0.05","0.15","0.21","0.23","0.24","0.08","0.06","0.23","0.39","0.37","0.35","0.13","0.02","-0.05","0.11","0.09","0.03","0.08","0.30","0.48","0.49","0.57","0.59"]
+      });
+    </script>
+  </body>
+</html>
