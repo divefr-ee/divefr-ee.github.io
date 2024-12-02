@@ -13,7 +13,7 @@ function formatTime(seconds) {
 function makePlot(dataset){
   const title = '';
   const xlabel = 'time (s)';
-  const ylabel1 = 'depth (m)';
+  const ylabel1 = '-depth (m)';
   const ylabel2 = 'rate (m/s)';
   const ylabel3 = 'temp (C)';
   const color1 = 'royalblue';
@@ -38,7 +38,7 @@ function makePlot(dataset){
   Plotly.react('divePlot', [
   {
     x: dataset.t,
-    y: dataset.depth,
+    y: dataset.height,
     mode: 'lines',
     type: 'scatter',
     name: ylabel1,
