@@ -1,3 +1,23 @@
+function isWebGLSupported() {
+    // Thanks https://stackoverflow.com/a/77480016
+    try {
+        let canvas = document.createElement('canvas');
+        return !!(
+            window.WebGLRenderingContext &&
+            (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
+        );
+    } catch (e) {
+        return false;
+    }
+}
+
+function showGLElements() {
+  let glArray = document.getElementsByClassName("gl-pane");
+  for (let i = (glArray.length - 1); i >= 0; i--) {
+    glArray[i].style.display = "block";
+  }
+}
+
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);  // Get full minutes
   const sec = seconds % 60;  // Get the fractional part of the seconds
@@ -94,6 +114,12 @@ function makePlot(dataset){
       showgrid: false
     }
   });
+}
+
+window.onload = function() {
+  if (isWebGLSupported()){
+    showGLElements();
+  }
 }
 
 window.addEventListener("resize", function() {
