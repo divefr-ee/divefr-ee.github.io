@@ -8,7 +8,7 @@ body {
   height: 100%;
   font-family: Arial, sans-serif;
   color: #555;
-  overflow: auto hidden;
+  overflow: auto;
 }
 
 a {
@@ -31,13 +31,34 @@ a:hover {
 }
 
 .map-pane {
+  margin: 0 auto;
   text-align: center;
   width: 100%;
 }
 
 .footer {
-  margin-top: 2%;
+  margin: 2% auto;
   text-align: center;
-  font-size: 90%;
   width: 100%;  
+}
+
+.screenshot-label {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.screenshot-container {
+  width: 80%;
+  margin: 3% auto;
+  height: auto;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Adjusts the number of columns dynamically */
+}
+
+/* Image inside the grid item */
+.screenshot-container img {
+  width: 100%;                /* Scales the image to fill the container */
+  height: auto;               /* Maintains aspect ratio */
+  object-fit: cover;          /* Ensures the image covers the container */
 }
