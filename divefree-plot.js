@@ -150,10 +150,10 @@ window.onload = function() {
       // load in background but don't display
       bgloadElement("map-pane-OSM");
       // make visiable after some time
-      setTimeout(function () {showElement("map-pane-OSM");},500);
+      setTimeout(function () {showElement("map-pane-OSM");},700);
       if (isWebGLSupported()) {
             bgloadElement("map-pane-GNC");
-            setTimeout(function () {showElement("map-pane-GNC");},1500);
+            setTimeout(function () {showElement("map-pane-GNC");},2000);
         }
       }
     });
