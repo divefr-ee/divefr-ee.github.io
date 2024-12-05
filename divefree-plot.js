@@ -11,11 +11,18 @@ function isWebGLSupported() {
     }
 }
 
-function showGLElements() {
-  let glArray = document.getElementsByClassName("gl-pane");
-  for (let i = (glArray.length - 1); i >= 0; i--) {
-    glArray[i].style.display = "block";
-  }
+function showElement(idname) {
+  let element = document.getElementById(idname);
+  element.style.display = "block";
+  element.style.height = "auto";
+  element.style.opacity = 1;
+}
+
+function bgloadElement(idname) {
+  let element = document.getElementById(idname);
+  element.style.display = "block";
+  element.style.height = 0;
+  element.style.opacity = 0;
 }
 
 function formatTime(seconds) {
@@ -116,10 +123,40 @@ function makePlot(dataset){
   });
 }
 
+function isPageAvailable(url) {
+  // Use fetch to send a request to the url
+  return fetch(url, { method: 'HEAD' , cache: 'no-cache'})  // HEAD requests are faster than GET
+  .then(response => {
+    if (response.ok) {
+        // If the response is successful (status code 200-299)
+      return true;
+    } else {
+        // If the server responds with an error code (e.g., 404, 500, etc.)
+      return false;
+    }
+  })
+  .catch(error => {
+      // If there is an error (e.g., network failure or url is unreachable)
+    console.error('Error:', error);
+    return false;
+  });
+}
+
 window.onload = function() {
-  if (isWebGLSupported()){
-    showGLElements();
-  }
+  // check if we are online. If not, don't load maps. 
+  isPageAvailable("https://divefr.ee/")
+  .then(pageExists => {
+    if (pageExists) {
+      // load in background but don't display
+      bgloadElement("map-pane-OSM");
+      // make visiable after some time
+      setTimeout(function () {showElement("map-pane-OSM");},500);
+      if (isWebGLSupported()) {
+            bgloadElement("map-pane-GNC");
+            setTimeout(function () {showElement("map-pane-GNC");},1500);
+        }
+      }
+    });
 }
 
 window.addEventListener("resize", function() {

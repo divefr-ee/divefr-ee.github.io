@@ -34,9 +34,7 @@ a:hover {
   margin: 0 auto;
   text-align: center;
   width: 100%;
-}
-
-.gl-pane {
+  transition: opacity 1s;
   display: none;
 }
 
