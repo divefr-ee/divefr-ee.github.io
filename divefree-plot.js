@@ -99,7 +99,23 @@ function makePlot(dataset){
       zorder: 6
     }
   ], {
-    title: "<b>" + dataset.date + " " + dataset.time + "</b><br><i>" + dataset.locname + "</i><br>" + dataset.divetime + " seconds :: " + dataset.maxdepth + " meters<br>&nbsp;",
+     annotations: [
+    {
+      x: 0.5, // Position it in the center of the plot (0.5 is 50% of the width)
+      y: 1.25, // Position above the plot with room for multiline
+      xref: "paper", // Relative to the entire plot area (not just data)
+      yref: "paper", // Same as xref
+
+      text: "<b>" + dataset.date + " " + dataset.time + "</b><br><i>" + dataset.locname + "</i><br>" + dataset.divetime + " seconds :: " + dataset.maxdepth + " meters<br>&nbsp;",
+      hovertext: "Surface Time<br>&nbsp;&nbsp;" + dataset.surfacetime,
+      hoverinfo: "text",
+      showarrow: false, // No arrow pointing to this annotation
+      font: {
+        size: 17,
+      },
+      align: 'center', // Align the text in the center
+    }
+  ],
     showlegend: false,
     xaxis: {
       title: xlabel,

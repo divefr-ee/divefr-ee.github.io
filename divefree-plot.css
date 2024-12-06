@@ -39,9 +39,13 @@ a:hover {
 }
 
 .footer {
-  margin: 2% auto;
-  text-align: center;
-  width: 100%;  
+  rotate: 270deg;
+  position: fixed;
+  right: 0;
+  color: #ccc;
+  bottom: 5%;
+  width: content;
+  padding: 3px;  
 }
 
 .screenshot-label {
