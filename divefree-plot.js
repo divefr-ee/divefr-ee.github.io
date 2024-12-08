@@ -106,7 +106,7 @@ function makePlot(dataset){
       xref: "paper", // Relative to the entire plot area (not just data)
       yref: "paper", // Same as xref
 
-      text: "<b>" + dataset.date + " " + dataset.time + "</b><br><i>" + dataset.locname + "</i><br>" + dataset.divetime + " seconds :: " + dataset.maxdepth + " meters<br>&nbsp;",
+      text: "<b>" + dataset.date + " " + dataset.time + "</b>" + dataset.timezone + "<br><i>" + dataset.locname + "</i><br>" + dataset.divetime + " seconds :: " + dataset.maxdepth + " meters<br>&nbsp;",
       hovertext: "Surface Time<br>&nbsp;&nbsp;" + dataset.surfacetime,
       hoverinfo: "text",
       showarrow: false, // No arrow pointing to this annotation
