@@ -27,7 +27,8 @@ body {
   padding-top: 10px;
   padding-right: 20px;
   box-sizing: border-box;
-  overflow: auto hidden;
+  overflow-x: hidden;
+  overflow-y: auto scroll;
   white-space: nowrap;
 }
 
@@ -36,7 +37,8 @@ body {
   flex-grow: 1;
   padding: 10px;
   box-sizing: border-box;
-  overflow: auto hidden;
+  overflow-x: hidden;
+  overflow-y: auto scroll;
 }
 
 ul {
