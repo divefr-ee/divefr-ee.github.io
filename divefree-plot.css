@@ -27,7 +27,8 @@ a:hover {
 }
 
 .dive-plot {
-  width: 100%;
+  margin: auto;
+  width: 90%;
 }
 
 .map-pane {
@@ -46,14 +47,13 @@ a:hover {
   padding: 2px;
 }
 
-
 .screenshot-label {
   margin: 0 auto;
   text-align: center;
 }
 
 .screenshot-container {
-  width: 40%;
+  width: 80%;
   margin: 3% auto;
   height: auto;
   display: grid;
@@ -63,7 +63,10 @@ a:hover {
 
 /* Image inside the grid item */
 .screenshot-container img {
-  width: 100%;                /* Scales the image to fill the container */
+  max-width: 100%;                /* Scales the image to fill the container */
   height: auto;               /* Maintains aspect ratio */
-  object-fit: cover;          /* Ensures the image covers the container */
+  /* Center the image horizontally and vertically within its grid cell */
+  justify-self: center;       /* Centers horizontally */
+  align-self: center;         /* Centers vertically */
+  border-radius: 10px;
 }
