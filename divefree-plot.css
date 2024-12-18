@@ -41,8 +41,8 @@ a:hover {
 
 .permalink {
   position: fixed;
-  right: 2%;
-  bottom: 2%;
+  left: 1%;
+  top: 1%;
   width: content;
   padding: 2px;
 }
